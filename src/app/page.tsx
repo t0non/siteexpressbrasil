@@ -396,15 +396,32 @@ export default function Home() {
       {/* FOOTER */}
       <footer className={styles.footer}>
         <div className={`container ${styles.footerContainer}`}>
-          <div className={styles.logo}>
-            <img src="/logo_siteexpress.png?v=2" alt="SiteExpress Logo" width="120" height="28" className={styles.logoImage} />
+          <div className={styles.footerBrand}>
+            <img src="/logo_siteexpress.png?v=2" alt="SiteExpress Logo" width="160" height="37" className={styles.logoImage} style={{ filter: 'brightness(0) invert(1)' }} />
+            <p className={styles.footerBio}>{t.footerBio}</p>
           </div>
-          <div className={styles.footerLinks}>
-            <a href="https://instagram.com/siteexpressbrasil" target="_blank" rel="noopener noreferrer">{t.footerInstagram}</a>
-            <a href="#">{t.footerWhatsapp}</a>
-            <a href="#">{t.footerCnpj}</a>
-            <a href="#">{t.footerPrivacy}</a>
-            <a href="#">{t.footerTerms}</a>
+          
+          <div className={styles.footerGrid}>
+            <div className={styles.footerCol}>
+              <h4>{t.footerContactTitle}</h4>
+              <a href="#">{t.footerWhatsapp}</a>
+              <a href="#">{t.footerEmail}</a>
+            </div>
+            <div className={styles.footerCol}>
+              <h4>{t.footerLegalTitle}</h4>
+              <a href="#">{t.footerCnpj}</a>
+              <a href="#">{t.footerPrivacy}</a>
+              <a href="#">{t.footerTerms}</a>
+            </div>
+            <div className={styles.footerCol}>
+              <h4>{t.footerSocialTitle}</h4>
+              <a href="https://instagram.com/siteexpressbrasil" target="_blank" rel="noopener noreferrer">{t.footerInstagram}</a>
+            </div>
+          </div>
+        </div>
+        <div className={styles.footerBottom}>
+          <div className="container">
+            <p>{t.footerCopyright}</p>
           </div>
         </div>
       </footer>
