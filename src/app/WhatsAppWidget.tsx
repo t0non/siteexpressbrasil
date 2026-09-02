@@ -76,7 +76,7 @@ export default function WhatsAppWidget() {
               ) : (
                 <>
                   <strong className={styles.bubbleName}>Maria Julia</strong>
-                  Não perca essa chance, site por apenas R$ 197! 🚀
+                  Não perca essa chance, site a partir de R$ 297! 🚀
                 </>
               )}
             </div>
@@ -104,7 +104,7 @@ export default function WhatsAppWidget() {
               Olá, vamos fazer o seu site hoje?
             </div>
             <div className={styles.chatMessage}>
-              Não perca essa chance, site por apenas R$ 197! 🚀
+              Não perca essa chance, site a partir de R$ 297! 🚀
             </div>
           </div>
           <div className={styles.chatFooter}>
