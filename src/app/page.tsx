@@ -158,10 +158,10 @@ export default function Home() {
           </div>
           <div style={{ display: 'flex', justifyContent: 'center', marginTop: '40px' }}>
             <button 
-              className={`${styles.ctaButton} ${styles.ctaSolidPink}`}
+              className={`${styles.ctaButton} ${styles.ctaSolidPink} ${styles.ctaGiant}`}
               onClick={() => handleWhatsAppClick('beneficios')}
             >
-              QUERO MEU SITE PROFISSIONAL
+              QUERO MEU SITE A PARTIR DE R$ 397
             </button>
           </div>
         </div>
