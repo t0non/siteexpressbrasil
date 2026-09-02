@@ -323,7 +323,7 @@ export default function Home() {
             </p>
             <div className={styles.guaranteeFeature}>
               <div className={styles.guaranteeCheck}>✓</div>
-              <span>Atendimento direto e rápido</span>
+              <span>Atendimento imediato</span>
             </div>
             <button 
               className={`${styles.ctaButton} ${styles.ctaSolidPink}`}
