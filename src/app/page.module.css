@@ -920,25 +920,6 @@ details[open] .faqQuestion::after {
   }
   .main {
     padding-bottom: 80px;
-  }
-}
-
-
-/* Verified Badge */
-.verifiedBadge {
-  display: flex;
-  align-items: center;
-  gap: var(--space-xs);
-  margin-top: var(--space-sm);
-  font-size: 0.8rem;
-  color: var(--color-gray);
-  font-weight: 500;
-}
-.verifiedImage {
-  object-fit: contain;
-  height: 24px;
-  width: auto;
-}
 
 
 /* STICKY BANNER */
@@ -1066,4 +1047,25 @@ details[open] .faqQuestion::after {
   .redStrikethrough {
     font-size: 1rem;
   }
+}
+
+/* Verified Badge Restored */
+.verifiedBadge {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  margin-top: var(--space-sm);
+  font-size: 0.8rem;
+  color: var(--color-gray);
+  font-weight: 500;
+}
+@media (max-width: 900px) {
+  .verifiedBadge {
+    justify-content: center;
+  }
+}
+.verifiedImage {
+  object-fit: contain;
+  height: 24px;
+  width: auto;
 }
