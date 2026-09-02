@@ -9,6 +9,9 @@ export default function Home() {
   
   const [timeLeft, setTimeLeft] = useState("");
   const [todayDate, setTodayDate] = useState("");
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [userName, setUserName] = useState("");
+  const [userCompany, setUserCompany] = useState("");
 
   useEffect(() => {
     const today = new Date();
@@ -36,8 +39,15 @@ export default function Home() {
 
   const handleWhatsAppClick = (origin: string) => {
     console.log(`Tracking event: click_whatsapp from ${origin}`);
-    // Opcionalmente integrar com dataLayer aqui
-    window.open(`https://wa.me/5511999999999?text=Ol%C3%A1!%20Vi%20a%20oferta%20da%20SiteExpress%20e%20quero%20criar%20meu%20site%20por%20R$197.%20Meu%20neg%C3%B3cio%20%C3%A9...`, '_blank');
+    setIsModalOpen(true);
+  };
+
+  const handleSubmitForm = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!userName || !userCompany) return;
+    const text = encodeURIComponent(`ola meu nome é ${userName} empresa: ${userCompany} gostario de fazer um site com vocês 💖`);
+    window.open(`https://wa.me/5511999999999?text=${text}`, '_blank');
+    setIsModalOpen(false);
   };
 
   return (
@@ -49,7 +59,7 @@ export default function Home() {
         <div className={styles.stickyBanner}>
           <div className="container">
             <p className={styles.stickyBannerText}>
-              APENAS HOJE DIA {todayDate} OFERTA DE 197 REAIS! TEMPO RESTANTE: <span className={styles.stickyBannerTimer}>{timeLeft}</span>
+              OFERTA VÁLIDA SOMENTE HOJE DIA {todayDate}: SITE PROFISSIONAL POR APENAS R$ 297!
             </p>
           </div>
         </div>
@@ -72,7 +82,7 @@ export default function Home() {
             </div>
             
             <h1 className={styles.headline}>
-              Seu site profissional no ar por <span className={styles.highlightPink}>R$ 197.</span>
+              Seu site profissional no ar por <span className={styles.highlightPink}>R$ 297.</span>
             </h1>
             
             <p className={styles.subheadline}>
@@ -85,7 +95,7 @@ export default function Home() {
                 className={`${styles.ctaButton} ${styles.ctaLarge}`}
                 onClick={() => handleWhatsAppClick('hero')}
               >
-                QUERO MEU SITE POR R$ 197
+                QUERO MEU SITE POR R$ 297
               </button>
               <div className={styles.verifiedBadge}>
                 <Image src="/verificado.jpg" alt="Empresa Verificada" width={24} height={24} className={styles.verifiedImage} />
@@ -194,7 +204,7 @@ export default function Home() {
 
             <div className={styles.pricingFinal}>
               <div className={styles.offerBadge}>HOJE NA SITEEXPRESS</div>
-              <h2 className={styles.offerPrice}>R$ 197</h2>
+              <h2 className={styles.offerPrice}>R$ 297</h2>
               <p className={styles.offerCondition}>Pagamento único.</p>
             </div>
             
@@ -202,7 +212,7 @@ export default function Home() {
               className={`${styles.ctaButton} ${styles.ctaFullWidth}`}
               onClick={() => handleWhatsAppClick('oferta')}
             >
-              QUERO APROVEITAR POR R$ 197
+              QUERO APROVEITAR POR R$ 297
             </button>
             <p className={styles.microcopy}>
               O domínio .com.br é contratado separadamente e custa aproximadamente R$39,99/ano.
@@ -254,7 +264,7 @@ export default function Home() {
       <section className={styles.guaranteeSection}>
         <div className={`container ${styles.guaranteeContainer}`}>
           <div className={styles.guaranteeVisual}>
-            <Image src="/garantia.png" alt="Selo de 7 Dias de Garantia" width={400} height={400} style={{ objectFit: 'contain' }} />
+            <Image src="/garantia.png" alt="Selo de 7 Dias de Garantia" width={280} height={280} style={{ objectFit: 'contain', maxWidth: '100%', height: 'auto' }} />
           </div>
           <div className={styles.guaranteeContent}>
             <span className={styles.guaranteeLabel}>RISCO ZERO PARA VOCÊ</span>
@@ -296,7 +306,7 @@ export default function Home() {
             </div>
             <div className={styles.finalNewPrice}>
               Seu investimento:<br/>
-              <strong>R$ 197</strong>
+              <strong>R$ 297</strong>
             </div>
             <span className={styles.paymentType}>Pagamento único.</span>
           </div>
@@ -305,7 +315,7 @@ export default function Home() {
             className={`${styles.ctaButton} ${styles.ctaGiant} ${styles.ctaSolidPink}`}
             onClick={() => handleWhatsAppClick('cta_final')}
           >
-            QUERO MEU SITE POR R$ 197
+            QUERO MEU SITE POR R$ 297
           </button>
           <p className={styles.microcopyDark}>Clique e fale diretamente com a SiteExpress pelo WhatsApp.</p>
         </div>
@@ -317,7 +327,7 @@ export default function Home() {
           <div className={styles.faqList}>
             <details className={styles.faqItem}>
               <summary className={styles.faqQuestion}>Tem mensalidade?</summary>
-              <div className={styles.faqAnswer}>Não. O investimento para criação do site é de R$197. O único custo externo obrigatório é o domínio, que custa aproximadamente R$39,99 por ano.</div>
+              <div className={styles.faqAnswer}>Não. O investimento para criação do site é de R$297. O único custo externo obrigatório é o domínio, que custa aproximadamente R$39,99 por ano.</div>
             </details>
             <details className={styles.faqItem}>
               <summary className={styles.faqQuestion}>Quanto tempo leva?</summary>
@@ -365,11 +375,44 @@ export default function Home() {
           className={`${styles.ctaButton} ${styles.ctaFullWidth}`}
           onClick={() => handleWhatsAppClick('sticky')}
         >
-          QUERO MEU SITE POR R$197
+          QUERO MEU SITE POR R$297
         </button>
       </div>
 
       <WhatsAppWidget />
+
+      {/* MODAL FORM */}
+      {isModalOpen && (
+        <div className={styles.modalOverlay} onClick={() => setIsModalOpen(false)}>
+          <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
+            <button className={styles.closeModal} onClick={() => setIsModalOpen(false)}>×</button>
+            <h3 className={styles.modalTitle}>Quase lá!</h3>
+            <p className={styles.modalDesc}>Preencha rápido para falarmos no WhatsApp:</p>
+            
+            <form className={styles.modalForm} onSubmit={handleSubmitForm}>
+              <input 
+                type="text" 
+                placeholder="Seu nome" 
+                className={styles.modalInput}
+                value={userName}
+                onChange={(e) => setUserName(e.target.value)}
+                required
+              />
+              <input 
+                type="text" 
+                placeholder="Nome da sua empresa (ou ideia)" 
+                className={styles.modalInput}
+                value={userCompany}
+                onChange={(e) => setUserCompany(e.target.value)}
+                required
+              />
+              <button type="submit" className={`${styles.ctaButton} ${styles.ctaFullWidth} ${styles.ctaSolidPink}`}>
+                CHAMAR NO WHATSAPP ➔
+              </button>
+            </form>
+          </div>
+        </div>
+      )}
     </main>
   );
 }

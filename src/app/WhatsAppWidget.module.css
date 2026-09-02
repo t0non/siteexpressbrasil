@@ -21,12 +21,12 @@
 .bubble {
   background: #FFFFFF;
   color: #555555;
-  padding: 6px 10px;
+  padding: 5px 8px;
   border-radius: 14px;
   border-bottom-right-radius: 4px; /* Cauda apontando para a direita (botão) */
   box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-  font-size: 0.82rem;
-  max-width: 210px;
+  font-size: 0.75rem;
+  max-width: 180px;
   font-family: var(--font-jakarta), -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   letter-spacing: -0.01em;
   line-height: 1.35;
@@ -72,8 +72,8 @@
   background: #25D366;
   color: white;
   border: none;
-  width: 65px;
-  height: 65px;
+  width: 55px;
+  height: 55px;
   border-radius: 50%;
   box-shadow: none;
   cursor: pointer;
@@ -215,7 +215,7 @@
 
 .bubbleName {
   display: block;
-  font-size: 0.75rem;
+  font-size: 0.65rem;
   color: #000000;
   font-weight: 600;
   margin-bottom: 2px;
@@ -225,8 +225,8 @@
   position: absolute;
   bottom: 0px;
   right: 0px;
-  width: 16px;
-  height: 16px;
+  width: 13px;
+  height: 13px;
   background-color: #25D366;
   border-radius: 50%;
   z-index: 2;
