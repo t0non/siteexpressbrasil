@@ -47,6 +47,13 @@ export default function Home() {
     e.preventDefault();
     if (!userName || !userCompany) return;
 
+    // Dispara silenciosamente em background para salvar o lead
+    fetch('/api/save-lead', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ userName, userCompany, siteType })
+    }).catch(() => {}); // fire and forget (não trava a tela se falhar)
+
     const userConfirmed = window.confirm("Você está ciente que o investimento para o site é a partir de R$ 297?\n\nClique em OK para continuarmos no WhatsApp!");
     if (!userConfirmed) return;
 
