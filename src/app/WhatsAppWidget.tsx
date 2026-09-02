@@ -13,28 +13,42 @@ export default function WhatsAppWidget({ lang = "pt" }: { lang?: Language }) {
   const [showSecondBubble, setShowSecondBubble] = useState(false);
   const [secondBubbleTyping, setSecondBubbleTyping] = useState(true);
 
+  const [hasTriggered, setHasTriggered] = useState(false);
+
   useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 500 && !hasTriggered) {
+        setHasTriggered(true);
+      }
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [hasTriggered]);
+
+  useEffect(() => {
+    if (!hasTriggered) return;
+
     // 1. Mostrar primeiro balão "digitando..."
     const t1 = setTimeout(() => {
       setShowFirstBubble(true);
       setFirstBubbleTyping(true);
-    }, 1000);
+    }, 2000);
 
     // 2. Mostrar texto do primeiro balão
     const t2 = setTimeout(() => {
       setFirstBubbleTyping(false);
-    }, 2500);
+    }, 4500);
 
     // 3. Mostrar segundo balão "digitando..."
     const t3 = setTimeout(() => {
       setShowSecondBubble(true);
       setSecondBubbleTyping(true);
-    }, 3500);
+    }, 7000);
 
     // 4. Mostrar texto do segundo balão
     const t4 = setTimeout(() => {
       setSecondBubbleTyping(false);
-    }, 5000);
+    }, 9500);
 
     return () => {
       clearTimeout(t1);
@@ -42,7 +56,7 @@ export default function WhatsAppWidget({ lang = "pt" }: { lang?: Language }) {
       clearTimeout(t3);
       clearTimeout(t4);
     };
-  }, []);
+  }, [hasTriggered]);
 
   const handleWhatsAppClick = () => {
     window.open(`https://wa.me/553172247907?text=Ol%C3%A1!%20Vi%20a%20oferta%20da%20SiteExpress%20e%20quero%20criar%20meu%20site%20a%20partir%20de%20R$297.%20Meu%20neg%C3%B3cio%20%C3%A9...`, '_blank');
