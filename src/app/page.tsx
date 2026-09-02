@@ -234,9 +234,7 @@ export default function Home() {
                 {t.ctaForm}
               </button>
             </div>
-            <p className={styles.microcopy}>
-              {t.microcopy}
-            </p>
+
           </div>
         </div>
       </section>
