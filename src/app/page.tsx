@@ -141,7 +141,7 @@ export default function Home() {
               <p>Ajuda a colocar a sua empresa nas buscas do Google de forma orgânica, sendo encontrada por clientes que procuram seu serviço.</p>
             </div>
             <div className={styles.benefitCard}>
-              <div className={styles.benefitIcon} style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
+              <div className={styles.benefitIcon} style={{ display: 'flex', gap: '16px', alignItems: 'center', justifyContent: 'center' }}>
                 <Image src="/claude.png" alt="Claude" width={44} height={44} style={{ objectFit: 'contain' }} />
                 <Image src="/gemini.png" alt="Gemini" width={90} height={40} style={{ objectFit: 'contain' }} />
                 <Image src="/chatgpt.png" alt="ChatGPT" width={44} height={44} style={{ objectFit: 'contain' }} />
