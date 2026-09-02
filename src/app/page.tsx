@@ -71,7 +71,7 @@ export default function Home() {
         <div className={styles.stickyBanner}>
           <div className="container">
             <p className={styles.stickyBannerText}>
-              OFERTA VÁLIDA SOMENTE HOJE DIA {todayDate}: SITE PROFISSIONAL A PARTIR DE R$ 297!
+              🎉 MÊS DE ANIVERSÁRIO SITEEXPRESS: COMEMORANDO ANOS DE MERCADO! SEU SITE A PARTIR DE R$ 297 SÓ HOJE ({todayDate})
             </p>
           </div>
         </div>
