@@ -271,28 +271,28 @@ export default function Home() {
       {/* SEÇÃO 4 - COMO FUNCIONA */}
       <section className={styles.processSection}>
         <div className="container">
-          <h2 className={styles.sectionTitle}>Você manda o básico.<br/>A gente cuida do resto.</h2>
+          <h2 className={styles.sectionTitle}>Como funciona?</h2>
           
           <div className={styles.processGrid}>
             <div className={styles.processStep}>
               <div style={{ marginBottom: '20px' }}>
                 <Image src="/etapa1.jpg" alt="Etapa 1" width={400} height={300} style={{ objectFit: 'cover', width: '100%', height: '300px', borderRadius: '12px' }} />
               </div>
-              <h3 className={styles.stepTitle}>Você manda as informações</h3>
+              <h3 className={styles.stepTitle}>Passo 1: Você manda as informações</h3>
               <p className={styles.stepDesc}>Logo, serviços, WhatsApp, fotos e referências.</p>
             </div>
             <div className={styles.processStep}>
               <div style={{ marginBottom: '20px' }}>
                 <Image src="/etapa2.jpg" alt="Etapa 2" width={400} height={300} style={{ objectFit: 'cover', width: '100%', height: '300px', borderRadius: '12px' }} />
               </div>
-              <h3 className={styles.stepTitle}>Criamos seu site</h3>
+              <h3 className={styles.stepTitle}>Passo 2: Criamos seu site</h3>
               <p className={styles.stepDesc}>Montamos o visual, conteúdo e estrutura e enviamos uma primeira prévia.</p>
             </div>
             <div className={styles.processStep}>
               <div style={{ marginBottom: '20px' }}>
                 <Image src="/etapa3.jpg" alt="Etapa 3" width={400} height={300} style={{ objectFit: 'cover', width: '100%', height: '300px', borderRadius: '12px' }} />
               </div>
-              <h3 className={styles.stepTitle}>Você aprova. A gente publica.</h3>
+              <h3 className={styles.stepTitle}>Passo 3: Você aprova. A gente publica.</h3>
               <p className={styles.stepDesc}>Fazemos os ajustes combinados e colocamos tudo no ar.</p>
             </div>
           </div>
