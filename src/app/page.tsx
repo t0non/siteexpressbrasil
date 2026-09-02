@@ -230,9 +230,7 @@ export default function Home() {
             </div>
             
             <div style={{ marginTop: '20px', textAlign: 'left' }}>
-              <p style={{ fontSize: '0.9rem', color: 'var(--color-gray)', marginBottom: '10px', textAlign: 'center' }}>
-                {t.formTitle}
-              </p>
+
               <form className={styles.modalForm} onSubmit={handleSubmitForm}>
                 <input 
                   type="text" 
