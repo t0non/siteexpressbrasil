@@ -343,6 +343,9 @@ export default function Home() {
             Seu próximo cliente provavelmente<br/>vai pesquisar sua empresa.
           </h2>
           <h3 className={styles.finalSubtitle}>O que ele vai encontrar?</h3>
+          <p style={{ textAlign: 'center', color: 'rgba(255,255,255,0.8)', fontSize: '1.1rem', marginBottom: '20px', fontWeight: 400 }}>
+            Se você pensou &quot;nada&quot;, você está perdendo dinheiro.
+          </p>
           <div style={{ marginTop: '30px', maxWidth: '400px', margin: '30px auto 0 auto' }}>
             <p style={{ fontSize: '1rem', color: 'var(--color-gray)', marginBottom: '16px' }}>
               Preencha para falar direto com a gente no WhatsApp:
