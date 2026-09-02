@@ -216,7 +216,6 @@ export default function Home() {
             </div>
 
             <div className={styles.pricingFinal}>
-              <div className={styles.offerBadge}>HOJE NA SITEEXPRESS</div>
               <span style={{ fontSize: '1.2rem', fontWeight: 600, color: 'var(--color-gray)' }}>A partir de</span>
               <h2 className={styles.offerPrice}>R$ 297</h2>
               <p className={styles.offerCondition}>Pagamento único.</p>
