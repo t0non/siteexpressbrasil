@@ -71,7 +71,7 @@ export default function Home() {
         <div className={styles.stickyBanner}>
           <div className="container">
             <p className={styles.stickyBannerText}>
-              OFERTA VÁLIDA SOMENTE HOJE DIA {todayDate}: SITE PROFISSIONAL POR APENAS R$ 297!
+              OFERTA VÁLIDA SOMENTE HOJE DIA {todayDate}: SITE PROFISSIONAL A PARTIR DE R$ 297!
             </p>
           </div>
         </div>
@@ -94,7 +94,7 @@ export default function Home() {
             </div>
             
             <h1 className={styles.headline}>
-              Seu site profissional no ar por <span className={styles.highlightPink}>R$ 297.</span>
+              Seu site profissional no ar <span className={styles.highlightPink}>a partir de R$ 297.</span>
             </h1>
             
             <p className={styles.subheadline}>
@@ -107,7 +107,7 @@ export default function Home() {
                 className={`${styles.ctaButton} ${styles.ctaLarge}`}
                 onClick={() => handleWhatsAppClick('hero')}
               >
-                QUERO MEU SITE POR R$ 297
+                QUERO MEU SITE A PARTIR DE R$ 297
               </button>
               <div className={styles.verifiedBadge}>
                 <Image src="/verificado.jpg" alt="Empresa Verificada" width={24} height={24} className={styles.verifiedImage} />
@@ -216,6 +216,7 @@ export default function Home() {
 
             <div className={styles.pricingFinal}>
               <div className={styles.offerBadge}>HOJE NA SITEEXPRESS</div>
+              <span style={{ fontSize: '1.2rem', fontWeight: 600, color: 'var(--color-gray)' }}>A partir de</span>
               <h2 className={styles.offerPrice}>R$ 297</h2>
               <p className={styles.offerCondition}>Pagamento único.</p>
             </div>
@@ -255,7 +256,7 @@ export default function Home() {
                   <option value="Outro">Outro (Sistema, App, etc)</option>
                 </select>
                 <button type="submit" className={`${styles.ctaButton} ${styles.ctaSolidPink} ${styles.ctaFullWidth}`}>
-                  QUERO APROVEITAR POR R$ 297 ➔
+                  QUERO APROVEITAR A PARTIR DE R$ 297 ➔
                 </button>
               </form>
             </div>
@@ -376,7 +377,7 @@ export default function Home() {
                 <option value="Outro">Outro (Sistema, App, etc)</option>
               </select>
               <button type="submit" className={`${styles.ctaButton} ${styles.ctaGiant} ${styles.ctaSolidPink} ${styles.ctaFullWidth}`}>
-                QUERO MEU SITE POR R$ 297 ➔
+                QUERO MEU SITE A PARTIR DE R$ 297 ➔
               </button>
             </form>
           </div>
@@ -389,7 +390,7 @@ export default function Home() {
           <div className={styles.faqList}>
             <details className={styles.faqItem}>
               <summary className={styles.faqQuestion}>Tem mensalidade?</summary>
-              <div className={styles.faqAnswer}>Não. O investimento para criação do site é de R$297. O único custo externo obrigatório é o domínio, que custa aproximadamente R$39,99 por ano.</div>
+              <div className={styles.faqAnswer}>Não. O investimento para criação do site é a partir de R$ 297. O único custo externo obrigatório é o domínio, que custa aproximadamente R$39,99 por ano.</div>
             </details>
             <details className={styles.faqItem}>
               <summary className={styles.faqQuestion}>Quanto tempo leva?</summary>
@@ -437,7 +438,7 @@ export default function Home() {
           className={`${styles.ctaButton} ${styles.ctaFullWidth}`}
           onClick={() => handleWhatsAppClick('sticky')}
         >
-          QUERO MEU SITE POR R$297
+          QUERO MEU SITE A PARTIR DE R$ 297
         </button>
       </div>
 
