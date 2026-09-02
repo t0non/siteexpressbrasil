@@ -46,6 +46,10 @@ export default function Home() {
   const handleSubmitForm = (e: React.FormEvent) => {
     e.preventDefault();
     if (!userName || !userCompany) return;
+
+    const userConfirmed = window.confirm("Você está ciente que o investimento para o site é a partir de R$ 297?\n\nClique em OK para continuarmos no WhatsApp!");
+    if (!userConfirmed) return;
+
     const text = encodeURIComponent(`Olá, meu nome é ${userName}, empresa: ${userCompany}. Gostaria de fazer um site tipo: ${siteType} com vocês 💖`);
     window.open(`https://wa.me/5511999999999?text=${text}`, '_blank');
     setIsModalOpen(false);
