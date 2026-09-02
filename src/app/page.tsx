@@ -87,8 +87,8 @@ export default function Home() {
             <img src="/logo_siteexpress.png?v=2" alt="SiteExpress Logo" width="180" height="42" className={styles.logoImage} />
           </div>
           <div style={{ display: 'flex', gap: '15px', alignItems: 'center', marginLeft: 'auto' }}>
-            <span onClick={() => setLang('pt')} style={{ cursor: 'pointer', fontSize: '1.8rem', filter: lang === 'pt' ? 'none' : 'grayscale(100%)', opacity: lang === 'pt' ? 1 : 0.5, transition: '0.3s' }}>🇧🇷</span>
-            <span onClick={() => setLang('en')} style={{ cursor: 'pointer', fontSize: '1.8rem', filter: lang === 'en' ? 'none' : 'grayscale(100%)', opacity: lang === 'en' ? 1 : 0.5, transition: '0.3s' }}>🇺🇸</span>
+            <span onClick={() => setLang('pt')} style={{ cursor: 'pointer', fontSize: '1.8rem', opacity: lang === 'pt' ? 1 : 0.4, transition: '0.3s' }}>🇧🇷</span>
+            <span onClick={() => setLang('en')} style={{ cursor: 'pointer', fontSize: '1.8rem', opacity: lang === 'en' ? 1 : 0.4, transition: '0.3s' }}>🇺🇸</span>
           </div>
         </div>
       </header>
