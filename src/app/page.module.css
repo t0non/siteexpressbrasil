@@ -1069,3 +1069,19 @@ details[open] .faqQuestion::after {
   height: 24px;
   width: auto;
 }
+
+/* MARQUEE EFFECT FOR BANNER */
+.stickyBanner {
+  overflow: hidden;
+}
+@keyframes marquee {
+  0% { transform: translateX(100vw); }
+  100% { transform: translateX(-100%); }
+}
+@media (max-width: 900px) {
+  .stickyBannerText {
+    white-space: nowrap;
+    display: inline-block;
+    animation: marquee 15s linear infinite;
+  }
+}
