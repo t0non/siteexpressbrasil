@@ -208,12 +208,32 @@ export default function Home() {
               <p className={styles.offerCondition}>Pagamento único.</p>
             </div>
             
-            <button 
-              className={`${styles.ctaButton} ${styles.ctaFullWidth}`}
-              onClick={() => handleWhatsAppClick('oferta')}
-            >
-              QUERO APROVEITAR POR R$ 297
-            </button>
+            <div style={{ marginTop: '20px', textAlign: 'left' }}>
+              <p style={{ fontSize: '0.9rem', color: 'var(--color-gray)', marginBottom: '10px', textAlign: 'center' }}>
+                Preencha para falar no WhatsApp:
+              </p>
+              <form className={styles.modalForm} onSubmit={handleSubmitForm}>
+                <input 
+                  type="text" 
+                  placeholder="Seu nome" 
+                  className={styles.modalInput}
+                  value={userName}
+                  onChange={(e) => setUserName(e.target.value)}
+                  required
+                />
+                <input 
+                  type="text" 
+                  placeholder="Nome da sua empresa" 
+                  className={styles.modalInput}
+                  value={userCompany}
+                  onChange={(e) => setUserCompany(e.target.value)}
+                  required
+                />
+                <button type="submit" className={`${styles.ctaButton} ${styles.ctaSolidPink} ${styles.ctaFullWidth}`}>
+                  QUERO APROVEITAR POR R$ 297 ➔
+                </button>
+              </form>
+            </div>
             <p className={styles.microcopy}>
               O domínio .com.br é contratado separadamente e custa aproximadamente R$39,99/ano.
             </p>
