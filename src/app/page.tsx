@@ -229,42 +229,10 @@ export default function Home() {
               <p className={styles.offerCondition}>{t.offerCondition}</p>
             </div>
             
-            <div style={{ marginTop: '20px', textAlign: 'left' }}>
-
-              <form className={styles.modalForm} onSubmit={handleSubmitForm}>
-                <input 
-                  type="text" 
-                  placeholder={t.formNamePlaceholder} 
-                  className={styles.modalInput}
-                  value={userName}
-                  onChange={(e) => setUserName(e.target.value)}
-                  required
-                />
-                <input 
-                  type="text" 
-                  placeholder={t.formCompanyPlaceholder} 
-                  className={styles.modalInput}
-                  value={userCompany}
-                  onChange={(e) => setUserCompany(e.target.value)}
-                  required
-                />
-                <select 
-                  className={styles.modalInput}
-                  value={siteType}
-                  onChange={(e) => setSiteType(e.target.value)}
-                  required
-                  style={{ cursor: 'pointer' }}
-                >
-                  <option value="Institucional">{t.formSelect1}</option>
-                  <option value="Landing Page">{t.formSelect2}</option>
-                  <option value="E-commerce">{t.formSelect3}</option>
-                  <option value="Blog/Portal">{t.formSelect4}</option>
-                  <option value="Outro">{t.formSelect5}</option>
-                </select>
-                <button type="submit" className={`${styles.ctaButton} ${styles.ctaSolidPink} ${styles.ctaFullWidth}`}>
-                  {t.ctaForm}
-                </button>
-              </form>
+            <div style={{ marginTop: '20px', textAlign: 'center' }}>
+              <button onClick={() => handleWhatsAppClick('pricing')} className={`${styles.ctaButton} ${styles.ctaSolidPink} ${styles.ctaFullWidth}`}>
+                {t.ctaForm}
+              </button>
             </div>
             <p className={styles.microcopy}>
               {t.microcopy}
