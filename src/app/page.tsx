@@ -436,15 +436,7 @@ export default function Home() {
         </div>
       </footer>
 
-      {/* STICKY MOBILE CTA */}
-      <div className={styles.stickyMobileCta}>
-        <button 
-          className={`${styles.ctaButton} ${styles.ctaFullWidth}`}
-          onClick={() => handleWhatsAppClick('sticky')}
-        >
-          QUERO MEU SITE A PARTIR DE R$ 297
-        </button>
-      </div>
+
 
       <WhatsAppWidget />
 
