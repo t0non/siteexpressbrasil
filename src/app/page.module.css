@@ -1087,3 +1087,11 @@ details[open] .faqQuestion::after {
     animation: marquee 15s linear infinite;
   }
 }
+
+@media (max-width: 900px) {
+  .ctaButton {
+    white-space: nowrap;
+    padding: 12px 16px;
+    font-size: 0.85rem;
+  }
+}
