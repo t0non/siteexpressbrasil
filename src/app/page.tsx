@@ -12,6 +12,7 @@ export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [userName, setUserName] = useState("");
   const [userCompany, setUserCompany] = useState("");
+  const [siteType, setSiteType] = useState("Institucional");
 
   useEffect(() => {
     const today = new Date();
@@ -45,7 +46,7 @@ export default function Home() {
   const handleSubmitForm = (e: React.FormEvent) => {
     e.preventDefault();
     if (!userName || !userCompany) return;
-    const text = encodeURIComponent(`ola meu nome é ${userName} empresa: ${userCompany} gostario de fazer um site com vocês 💖`);
+    const text = encodeURIComponent(`Olá, meu nome é ${userName}, empresa: ${userCompany}. Gostaria de fazer um site tipo: ${siteType} com vocês 💖`);
     window.open(`https://wa.me/5511999999999?text=${text}`, '_blank');
     setIsModalOpen(false);
   };
@@ -229,6 +230,19 @@ export default function Home() {
                   onChange={(e) => setUserCompany(e.target.value)}
                   required
                 />
+                <select 
+                  className={styles.modalInput}
+                  value={siteType}
+                  onChange={(e) => setSiteType(e.target.value)}
+                  required
+                  style={{ cursor: 'pointer' }}
+                >
+                  <option value="Institucional">Site Institucional</option>
+                  <option value="Landing Page">Landing Page / Vendas</option>
+                  <option value="E-commerce">E-commerce / Loja Virtual</option>
+                  <option value="Blog/Portal">Blog / Portal</option>
+                  <option value="Outro">Outro (Sistema, App, etc)</option>
+                </select>
                 <button type="submit" className={`${styles.ctaButton} ${styles.ctaSolidPink} ${styles.ctaFullWidth}`}>
                   QUERO APROVEITAR POR R$ 297 ➔
                 </button>
@@ -337,6 +351,19 @@ export default function Home() {
                 onChange={(e) => setUserCompany(e.target.value)}
                 required
               />
+              <select 
+                className={styles.modalInput}
+                value={siteType}
+                onChange={(e) => setSiteType(e.target.value)}
+                required
+                style={{ cursor: 'pointer' }}
+              >
+                <option value="Institucional">Site Institucional</option>
+                <option value="Landing Page">Landing Page / Vendas</option>
+                <option value="E-commerce">E-commerce / Loja Virtual</option>
+                <option value="Blog/Portal">Blog / Portal</option>
+                <option value="Outro">Outro (Sistema, App, etc)</option>
+              </select>
               <button type="submit" className={`${styles.ctaButton} ${styles.ctaGiant} ${styles.ctaSolidPink} ${styles.ctaFullWidth}`}>
                 QUERO MEU SITE POR R$ 297 ➔
               </button>
@@ -430,6 +457,19 @@ export default function Home() {
                 onChange={(e) => setUserCompany(e.target.value)}
                 required
               />
+              <select 
+                className={styles.modalInput}
+                value={siteType}
+                onChange={(e) => setSiteType(e.target.value)}
+                required
+                style={{ cursor: 'pointer' }}
+              >
+                <option value="Institucional">Site Institucional</option>
+                <option value="Landing Page">Landing Page / Vendas</option>
+                <option value="E-commerce">E-commerce / Loja Virtual</option>
+                <option value="Blog/Portal">Blog / Portal</option>
+                <option value="Outro">Outro (Sistema, App, etc)</option>
+              </select>
               <button type="submit" className={`${styles.ctaButton} ${styles.ctaFullWidth} ${styles.ctaSolidPink}`}>
                 CHAMAR NO WHATSAPP ➔
               </button>
