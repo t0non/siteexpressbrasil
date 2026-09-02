@@ -1,0 +1,249 @@
+.widgetContainer {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: row; /* Coloca os balões à esquerda do botão */
+  align-items: flex-end;
+  gap: 15px;
+}
+
+.floatingBubbles {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+  margin-bottom: 5px; /* Alinha um pouco acima do botão */
+}
+
+/* Estilo iPhone iOS (Mensagem Recebida) */
+.bubble {
+  background: #FFFFFF;
+  color: #555555;
+  padding: 6px 10px;
+  border-radius: 14px;
+  border-bottom-right-radius: 4px; /* Cauda apontando para a direita (botão) */
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  font-size: 0.82rem;
+  max-width: 210px;
+  font-family: var(--font-jakarta), -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  letter-spacing: -0.01em;
+  line-height: 1.35;
+  transform-origin: bottom right;
+}
+
+.animateBubble {
+  animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+@keyframes popIn {
+  0% { opacity: 0; transform: scale(0.5); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+/* Animação Digitando */
+.typingIndicator {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  height: 20px;
+  padding: 0 4px;
+}
+
+.typingIndicator span {
+  width: 6px;
+  height: 6px;
+  background-color: #8E8E93;
+  border-radius: 50%;
+  animation: typing 1.4s infinite ease-in-out both;
+}
+
+.typingIndicator span:nth-child(1) { animation-delay: -0.32s; }
+.typingIndicator span:nth-child(2) { animation-delay: -0.16s; }
+
+@keyframes typing {
+  0%, 80%, 100% { transform: scale(0.6); opacity: 0.5; }
+  40% { transform: scale(1); opacity: 1; }
+}
+
+.floatingBtn {
+  position: relative;
+  background: #25D366;
+  color: white;
+  border: none;
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
+  box-shadow: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s;
+  padding: 0;
+  flex-shrink: 0; /* Impede que o botão encolha */
+}
+
+.floatingBtn:hover {
+  transform: scale(1.05);
+}
+
+.profilePicWrapper {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+/* Modal */
+.chatModal {
+  width: 320px;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  animation: slideUp 0.3s ease forwards;
+  transform-origin: bottom right;
+}
+
+@keyframes slideUp {
+  0% { opacity: 0; transform: translateY(20px) scale(0.9); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.chatHeader {
+  background: #075E54;
+  color: white;
+  padding: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.chatProfile {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.profilePicPlaceholder {
+  width: 45px;
+  height: 45px;
+  background: #128C7E;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 1.2rem;
+  overflow: hidden;
+}
+
+.chatProfile strong {
+  display: block;
+  font-size: 1.05rem;
+}
+
+.chatProfile span {
+  font-size: 0.85rem;
+  opacity: 0.9;
+}
+
+.closeBtn {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 2rem;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.chatBody {
+  background: #E5DDD5;
+  padding: 20px 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-height: 350px;
+  overflow-y: auto;
+}
+
+.chatMessage {
+  background: white;
+  padding: 12px 14px;
+  border-radius: 0 10px 10px 10px;
+  font-size: 0.95rem;
+  color: #333;
+  align-self: flex-start;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+  max-width: 85%;
+  line-height: 1.4;
+}
+
+.chatFooter {
+  padding: 16px;
+  background: white;
+}
+
+.chatCta {
+  width: 100%;
+  background: #25D366;
+  color: white;
+  border: none;
+  padding: 14px;
+  border-radius: 100px;
+  font-weight: bold;
+  font-size: 1.05rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: background 0.2s;
+}
+
+.chatCta:hover {
+  background: #1DA851;
+}
+
+.bubbleName {
+  display: block;
+  font-size: 0.75rem;
+  color: #000000;
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+
+.onlineDot {
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  width: 16px;
+  height: 16px;
+  background-color: #25D366;
+  border-radius: 50%;
+  z-index: 2;
+  animation: pulseGreen 2s infinite;
+}
+
+@keyframes pulseGreen {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+  }
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 6px rgba(37, 211, 102, 0);
+  }
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+  }
+}
