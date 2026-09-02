@@ -98,8 +98,9 @@ export default function Home() {
             </h1>
             
             <p className={styles.subheadline}>
-              Domine as buscas do <strong>Google</strong> e das <strong>IAs</strong> antes do seu concorrente.<br/>
-              A SiteExpress cria, configura e publica seu site profissional em tempo recorde para você parar de deixar dinheiro na mesa. Zero dor de cabeça e zero programação.
+              Domine o <strong>Google</strong> e pare de deixar dinheiro na mesa.<br/>
+              Entregamos seu site profissional no ar em tempo recorde.<br/>
+              <strong>Zero dor de cabeça, zero código.</strong>
             </p>
             
             <div className={styles.heroCtaWrapper}>
