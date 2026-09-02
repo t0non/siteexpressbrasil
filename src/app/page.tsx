@@ -316,28 +316,32 @@ export default function Home() {
             Seu próximo cliente provavelmente<br/>vai pesquisar sua empresa.
           </h2>
           <h3 className={styles.finalSubtitle}>O que ele vai encontrar?</h3>
-          <p className={styles.finalText}>
-            Tenha um site profissional, rápido e preparado para transformar visitas em oportunidades.
-          </p>
-
-          <div className={styles.finalPriceBox}>
-            <div className={styles.finalOldPrice}>
-              Valor estimado separadamente: <span className={styles.redStrikethrough}>R$ 500</span>
-            </div>
-            <div className={styles.finalNewPrice}>
-              Seu investimento:<br/>
-              <strong>R$ 297</strong>
-            </div>
-            <span className={styles.paymentType}>Pagamento único.</span>
+          <div style={{ marginTop: '30px', maxWidth: '400px', margin: '30px auto 0 auto' }}>
+            <p style={{ fontSize: '1rem', color: 'var(--color-gray)', marginBottom: '16px' }}>
+              Preencha para falar direto com a gente no WhatsApp:
+            </p>
+            <form className={styles.modalForm} onSubmit={handleSubmitForm}>
+              <input 
+                type="text" 
+                placeholder="Seu nome" 
+                className={styles.modalInput}
+                value={userName}
+                onChange={(e) => setUserName(e.target.value)}
+                required
+              />
+              <input 
+                type="text" 
+                placeholder="Nome da sua empresa" 
+                className={styles.modalInput}
+                value={userCompany}
+                onChange={(e) => setUserCompany(e.target.value)}
+                required
+              />
+              <button type="submit" className={`${styles.ctaButton} ${styles.ctaGiant} ${styles.ctaSolidPink} ${styles.ctaFullWidth}`}>
+                QUERO MEU SITE POR R$ 297 ➔
+              </button>
+            </form>
           </div>
-
-          <button 
-            className={`${styles.ctaButton} ${styles.ctaGiant} ${styles.ctaSolidPink}`}
-            onClick={() => handleWhatsAppClick('cta_final')}
-          >
-            QUERO MEU SITE POR R$ 297
-          </button>
-          <p className={styles.microcopyDark}>Clique e fale diretamente com a SiteExpress pelo WhatsApp.</p>
         </div>
       </section>
 
