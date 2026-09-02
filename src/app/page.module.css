@@ -1052,15 +1052,16 @@ details[open] .faqQuestion::after {
 /* PRICING OVERRIDES FOR MOBILE */
 @media (max-width: 900px) {
   .pricingListItem {
-    font-size: 0.95rem;
-    gap: 12px;
+    font-size: 0.75rem; /* Ajustado para caber em uma linha */
+    gap: 8px;
     margin-bottom: 8px;
+    white-space: nowrap; /* Força ficar em uma linha */
   }
   .pricingItemValue {
-    font-size: 1rem;
+    font-size: 0.8rem; /* Ajuste proporcional ao valor */
   }
   .pricingTotal {
-    font-size: 1.05rem;
+    font-size: 0.9rem;
   }
   .redStrikethrough {
     font-size: 1rem;
