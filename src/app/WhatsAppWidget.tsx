@@ -3,8 +3,10 @@
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import styles from './WhatsAppWidget.module.css';
+import { translations, Language } from './translations';
 
-export default function WhatsAppWidget() {
+export default function WhatsAppWidget({ lang = "pt" }: { lang?: Language }) {
+  const t = translations[lang];
   const [isOpen, setIsOpen] = useState(false);
   const [showFirstBubble, setShowFirstBubble] = useState(false);
   const [firstBubbleTyping, setFirstBubbleTyping] = useState(true);
@@ -64,7 +66,7 @@ export default function WhatsAppWidget() {
               ) : (
                 <>
                   <strong className={styles.bubbleName}>Maria Julia</strong>
-                  Olá, vamos fazer o seu site hoje?
+                  {t.widgetGreeting}
                 </>
               )}
             </div>
@@ -76,7 +78,7 @@ export default function WhatsAppWidget() {
               ) : (
                 <>
                   <strong className={styles.bubbleName}>Maria Julia</strong>
-                  Não perca essa chance, site a partir de R$ 297! 🚀
+                  {t.widgetOffer}
                 </>
               )}
             </div>
@@ -101,10 +103,10 @@ export default function WhatsAppWidget() {
           </div>
           <div className={styles.chatBody}>
             <div className={styles.chatMessage}>
-              Olá, vamos fazer o seu site hoje?
+              {t.widgetGreeting}
             </div>
             <div className={styles.chatMessage}>
-              Não perca essa chance, site a partir de R$ 297! 🚀
+              {t.widgetOffer}
             </div>
           </div>
           <div className={styles.chatFooter}>
