@@ -43,7 +43,7 @@ export default function WhatsAppWidget() {
   }, []);
 
   const handleWhatsAppClick = () => {
-    window.open(`https://wa.me/5511999999999?text=Ol%C3%A1!%20Vi%20a%20oferta%20da%20SiteExpress%20e%20quero%20criar%20meu%20site%20por%20R$197.%20Meu%20neg%C3%B3cio%20%C3%A9...`, '_blank');
+    window.open(`https://wa.me/553172247907?text=Ol%C3%A1!%20Vi%20a%20oferta%20da%20SiteExpress%20e%20quero%20criar%20meu%20site%20a%20partir%20de%20R$297.%20Meu%20neg%C3%B3cio%20%C3%A9...`, '_blank');
   };
 
   const toggleWidget = () => {

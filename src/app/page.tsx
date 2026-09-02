@@ -58,7 +58,7 @@ export default function Home() {
     if (!userConfirmed) return;
 
     const text = encodeURIComponent(`Olá, meu nome é ${userName}, empresa: ${userCompany}. Gostaria de fazer um site tipo: ${siteType} com vocês 💖`);
-    window.open(`https://wa.me/5511999999999?text=${text}`, '_blank');
+    window.open(`https://wa.me/553172247907?text=${text}`, '_blank');
     setIsModalOpen(false);
   };
 
@@ -427,7 +427,7 @@ export default function Home() {
             <img src="/logo_siteexpress.png?v=2" alt="SiteExpress Logo" width="120" height="28" className={styles.logoImage} />
           </div>
           <div className={styles.footerLinks}>
-            <a href="#">Instagram</a>
+            <a href="https://instagram.com/siteexpressbrasil" target="_blank" rel="noopener noreferrer">@siteexpressbrasil</a>
             <a href="#">WhatsApp</a>
             <a href="#">CNPJ</a>
             <a href="#">Política de Privacidade</a>
