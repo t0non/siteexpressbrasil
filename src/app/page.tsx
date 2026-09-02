@@ -319,7 +319,7 @@ export default function Home() {
               SE NÃO GOSTAR, <span className={styles.highlightPink} style={{ fontWeight: 800 }}>DEVOLVEMOS</span> SEU DINHEIRO!
             </h2>
             <p className={styles.guaranteeText}>
-              Confiamos tanto no padrão de excelência dos nossos projetos que o risco é 100% nosso. Se após receber a primeira versão do seu site você entender que ele não atende aos seus objetivos, <strong>devolvemos todo o seu dinheiro investido</strong>. Sem burocracia e sem letras miúdas. Consulte nossos <a href="#" style={{color: 'var(--color-magenta)', textDecoration: 'underline'}}>Termos de Garantia</a>.
+              Confiamos tanto no padrão de excelência dos nossos projetos que o risco é 100% nosso. Se após receber a primeira versão do seu site você entender que ele não atende aos seus objetivos, <strong>devolvemos todo o seu dinheiro investido</strong>. Consulte nossos <a href="#" style={{color: 'var(--color-magenta)', textDecoration: 'underline'}}>Termos de Garantia</a>.
             </p>
             <div className={styles.guaranteeFeature}>
               <div className={styles.guaranteeCheck}>✓</div>
