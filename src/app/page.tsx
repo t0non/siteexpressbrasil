@@ -98,7 +98,7 @@ export default function Home() {
             </h1>
             
             <p className={styles.subheadline}>
-              Domine o <strong>Google</strong> e pare de deixar dinheiro na mesa.<br/>
+              Domine o <strong style={{ whiteSpace: 'nowrap' }}><span style={{ color: '#4285F4' }}>G</span><span style={{ color: '#EA4335' }}>o</span><span style={{ color: '#FBBC05' }}>o</span><span style={{ color: '#4285F4' }}>g</span><span style={{ color: '#34A853' }}>l</span><span style={{ color: '#EA4335' }}>e</span></strong> e pare de deixar dinheiro na mesa.<br/>
               Entregamos seu site profissional no ar em tempo recorde.<br/>
               <strong>Zero dor de cabeça, zero código.</strong>
             </p>
