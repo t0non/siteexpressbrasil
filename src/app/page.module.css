@@ -609,7 +609,7 @@
   color: white;
   padding: var(--section-padding);
   border-radius: 20px;
-  margin: 0 20px;
+  margin: var(--space-xl) 20px;
   border: 1px solid rgba(255, 45, 122, 0.2);
 }
 
