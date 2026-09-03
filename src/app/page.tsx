@@ -118,10 +118,6 @@ export default function Home() {
               >
                 {t.ctaHero}
               </button>
-              <div className={styles.verifiedBadge}>
-                <Image src="/verificado.jpg" alt="Empresa Verificada" width={24} height={24} className={styles.verifiedImage} />
-                <span>{t.verifiedCompany}</span>
-              </div>
             </div>
           </div>
           
