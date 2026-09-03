@@ -315,7 +315,10 @@ export default function Home() {
       {/* SEÇÃO 5 - COMO FUNCIONA */}
       <section className={styles.processSection}>
         <div className="container">
-          <h2 className={styles.sectionTitle}>{t.processTitle}</h2>
+          <h2 className={styles.sectionTitle} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px', flexWrap: 'wrap' }}>
+            <span>{t.processTitle}</span>
+            <img src="/duvid.png?v=1" alt="Como funciona" width="44" height="44" style={{ objectFit: 'contain', display: 'inline-block' }} />
+          </h2>
           
           <div className={styles.processGrid}>
             <div className={styles.processStep}>
