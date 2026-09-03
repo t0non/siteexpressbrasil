@@ -17,6 +17,7 @@ export default function Home() {
   const [userName, setUserName] = useState("");
   const [userCompany, setUserCompany] = useState("");
   const [siteType, setSiteType] = useState("Site para apresentar minha empresa");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
     const today = new Date();
@@ -59,8 +60,20 @@ export default function Home() {
   const handleSubmitForm = (e: React.FormEvent) => {
     e.preventDefault();
     if (!userName || !userCompany) return;
+    if (isSubmitting) return; // Evita duplo clique e disparos duplicados
+
+    setIsSubmitting(true);
 
     const currentSiteType = siteType || t.formSelect1;
+
+    // GTM: Track lead (apenas campos validados, sem dados pessoais)
+    if (typeof window !== "undefined") {
+      (window as any).dataLayer = (window as any).dataLayer || [];
+      (window as any).dataLayer.push({
+        event: 'siteexpress_lead',
+        project_type: currentSiteType
+      });
+    }
 
     // Dispara silenciosamente em background para salvar o lead
     fetch('/api/save-lead', {
@@ -72,6 +85,11 @@ export default function Home() {
     const text = encodeURIComponent(t.whatsappMessage(userName, userCompany, currentSiteType));
     window.open(`https://wa.me/553172247907?text=${text}`, '_blank');
     setIsModalOpen(false);
+
+    // Libera o lock após um tempinho caso o usuário volte pra tela
+    setTimeout(() => {
+      setIsSubmitting(false);
+    }, 2000);
   };
 
   return (
