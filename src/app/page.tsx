@@ -107,9 +107,6 @@ export default function Home() {
             <p className={styles.subheadline}>
               <span>{t.heroSubheadline3a}</span><strong className={styles.highlightPink}>{t.heroSubheadline3b}</strong>
             </p>
-            <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', background: 'rgba(255, 45, 122, 0.08)', color: '#FF2D7A', padding: '6px 16px', borderRadius: '100px', fontSize: '0.88rem', fontWeight: 700, marginBottom: '20px' }}>
-              {t.heroPaymentBadge}
-            </div>
             
             <div className={styles.heroCtaWrapper}>
               <button 
