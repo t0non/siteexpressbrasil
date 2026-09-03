@@ -445,6 +445,7 @@
   line-height: 1;
   font-family: var(--font-sora);
   margin-bottom: var(--space-2xs);
+  white-space: nowrap;
 }
 
 .offerCondition {
@@ -478,6 +479,14 @@
   line-height: 1;
   font-family: var(--font-sora);
   margin-bottom: var(--space-2xs);
+  white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+  .offerPrice, .newPrice {
+    font-size: 3rem;
+    white-space: nowrap;
+  }
 }
 
 .paymentType {
