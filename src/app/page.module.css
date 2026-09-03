@@ -549,15 +549,13 @@
 
 .browserBarText {
   color: var(--color-magenta, #FF2D7A);
-  font-size: 0.65rem;
-  font-weight: 500;
+  font-size: 0.6rem;
+  font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.03em;
   white-space: nowrap;
   line-height: 1;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  max-width: 70%;
+  pointer-events: none;
 }
 
 .browserBar span {
@@ -577,7 +575,7 @@
 .browserIframeWrapper {
   position: relative;
   width: 100%;
-  aspect-ratio: 16 / 10;
+  aspect-ratio: 16 / 11;
   background: var(--color-white);
   overflow: hidden;
 }
@@ -587,7 +585,7 @@
   top: 0;
   left: 0;
   width: 1280px;
-  height: 800px;
+  height: 880px;
   transform: scale(0.43);
   transform-origin: 0 0;
   border: none;
