@@ -108,7 +108,7 @@ export default function Home() {
             <p className={styles.subheadline}>
               Domine o <strong style={{ whiteSpace: 'nowrap' }}><span style={{ color: '#4285F4' }}>G</span><span style={{ color: '#EA4335' }}>o</span><span style={{ color: '#FBBC05' }}>o</span><span style={{ color: '#4285F4' }}>g</span><span style={{ color: '#34A853' }}>l</span><span style={{ color: '#EA4335' }}>e</span></strong> {t.heroSubheadline1}<br/>
               {t.heroSubheadline2}<br/>
-              <strong>{t.heroSubheadline3}</strong>
+              <strong className={styles.highlightPink}>{t.heroSubheadline3}</strong>
             </p>
             
             <div className={styles.heroCtaWrapper}>
@@ -198,7 +198,7 @@ export default function Home() {
                   <span className={styles.browserBarText}>{t.portfolioBrowserText}</span>
                 </div>
                 <div className={styles.browserIframeWrapper}>
-                  <iframe src="https://lp-lex-aero.vercel.app/" title="Portfolio Preview"></iframe>
+                  <iframe src="https://lp-lex-aero.vercel.app/" title="Portfolio Preview" loading="lazy"></iframe>
                 </div>
               </div>
             </div>
@@ -210,7 +210,7 @@ export default function Home() {
                   <span className={styles.browserBarText}>{t.portfolioBrowserText}</span>
                 </div>
                 <div className={styles.browserIframeWrapper}>
-                  <iframe src="https://lp-bcredf-cil.vercel.app/" title="Portfolio Preview"></iframe>
+                  <iframe src="https://lp-bcredf-cil.vercel.app/" title="Portfolio Preview" loading="lazy"></iframe>
                 </div>
               </div>
             </div>
@@ -222,7 +222,7 @@ export default function Home() {
                   <span className={styles.browserBarText}>{t.portfolioBrowserText}</span>
                 </div>
                 <div className={styles.browserIframeWrapper}>
-                  <iframe src="https://lp-gs-terapias.vercel.app/" title="Portfolio Preview"></iframe>
+                  <iframe src="https://lp-gs-terapias.vercel.app/" title="Portfolio Preview" loading="lazy"></iframe>
                 </div>
               </div>
             </div>
@@ -234,7 +234,7 @@ export default function Home() {
                   <span className={styles.browserBarText}>{t.portfolioBrowserText}</span>
                 </div>
                 <div className={styles.browserIframeWrapper}>
-                  <iframe src="https://lp-obras-servi-os.vercel.app/" title="Portfolio Preview"></iframe>
+                  <iframe src="https://lp-obras-servi-os.vercel.app/" title="Portfolio Preview" loading="lazy"></iframe>
                 </div>
               </div>
             </div>

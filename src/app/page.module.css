@@ -594,6 +594,14 @@
   display: block;
 }
 
+@media (max-width: 768px) {
+  .browserIframeWrapper iframe {
+    width: 400%;
+    height: 400%;
+    transform: scale(0.25);
+  }
+}
+
 
 /* PROCESS SECTION */
 .processSection {
