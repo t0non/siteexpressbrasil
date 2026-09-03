@@ -198,7 +198,7 @@ export default function Home() {
                   <span className={styles.browserBarText}>{t.portfolioBrowserText}</span>
                 </div>
                 <div className={styles.browserIframeWrapper}>
-                  <iframe src="https://lp-lex-aero.vercel.app/" title="Portfolio Preview" loading="lazy"></iframe>
+                  <iframe src="https://lp-lex-aero.vercel.app/" title="Portfolio Preview"></iframe>
                 </div>
               </div>
             </div>
@@ -210,7 +210,7 @@ export default function Home() {
                   <span className={styles.browserBarText}>{t.portfolioBrowserText}</span>
                 </div>
                 <div className={styles.browserIframeWrapper}>
-                  <iframe src="https://lp-bcredf-cil.vercel.app/" title="Portfolio Preview" loading="lazy"></iframe>
+                  <iframe src="https://lp-bcredf-cil.vercel.app/" title="Portfolio Preview"></iframe>
                 </div>
               </div>
             </div>
@@ -222,7 +222,7 @@ export default function Home() {
                   <span className={styles.browserBarText}>{t.portfolioBrowserText}</span>
                 </div>
                 <div className={styles.browserIframeWrapper}>
-                  <iframe src="https://lp-gs-terapias.vercel.app/" title="Portfolio Preview" loading="lazy"></iframe>
+                  <iframe src="https://lp-gs-terapias.vercel.app/" title="Portfolio Preview"></iframe>
                 </div>
               </div>
             </div>
@@ -234,7 +234,7 @@ export default function Home() {
                   <span className={styles.browserBarText}>{t.portfolioBrowserText}</span>
                 </div>
                 <div className={styles.browserIframeWrapper}>
-                  <iframe src="https://lp-obras-servi-os.vercel.app/" title="Portfolio Preview" loading="lazy"></iframe>
+                  <iframe src="https://lp-obras-servi-os.vercel.app/" title="Portfolio Preview"></iframe>
                 </div>
               </div>
             </div>
