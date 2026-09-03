@@ -423,7 +423,7 @@ export default function Home() {
       <section className={styles.finalCtaSection}>
         <div className="container">
           <h2 className={styles.finalTitle}>
-            {t.finalTitle.split("\n")[0]}<br/>{t.finalTitle.split("\n")[1]}
+            {t.finalTitle}
           </h2>
           <h3 className={styles.finalSubtitle}>{t.finalSubtitle}</h3>
           <p style={{ textAlign: 'center', color: 'rgba(255,255,255,0.8)', fontSize: '1.1rem', marginBottom: '20px', fontWeight: 400 }}>
