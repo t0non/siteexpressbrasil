@@ -303,7 +303,7 @@
   width: 14px;
   height: 14px;
   background-color: #25D366;
-  border: 2px solid #ffffff;
+  border: none;
   border-radius: 50%;
   z-index: 2;
 }
