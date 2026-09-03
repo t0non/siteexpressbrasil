@@ -31,6 +31,14 @@
   transform-origin: bottom right;
 }
 
+.bubbleName {
+  display: block;
+  font-size: 0.75rem;
+  color: #FF2D7A;
+  font-weight: 700;
+  margin-bottom: 3px;
+}
+
 .animateBubble {
   animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
 }

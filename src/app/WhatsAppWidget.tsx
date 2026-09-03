@@ -123,6 +123,7 @@ export default function WhatsAppWidget({ lang = "pt" }: { lang?: Language }) {
             <div className={styles.dateBadge}>HOJE</div>
             
             <div className={styles.chatMessage}>
+              <strong className={styles.bubbleName}>Maria Julia</strong>
               <div className={styles.messageContent}>{t.widgetGreeting}</div>
               <div className={styles.messageMeta}>
                 <span className={styles.messageTime}>{currentTime}</span>
@@ -131,6 +132,7 @@ export default function WhatsAppWidget({ lang = "pt" }: { lang?: Language }) {
             </div>
 
             <div className={styles.chatMessage}>
+              <strong className={styles.bubbleName}>Maria Julia</strong>
               <div className={styles.messageContent}>{t.widgetOffer}</div>
               <div className={styles.messageMeta}>
                 <span className={styles.messageTime}>{currentTime}</span>
