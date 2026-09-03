@@ -44,6 +44,15 @@ export default function Home() {
 
   const handleWhatsAppClick = (origin: string) => {
     console.log(`Tracking event: click_whatsapp from ${origin}`);
+    
+    // GTM: Track form modal open
+    if (typeof window !== "undefined") {
+      (window as any).dataLayer = (window as any).dataLayer || [];
+      (window as any).dataLayer.push({
+        event: 'siteexpress_form_start'
+      });
+    }
+
     setIsModalOpen(true);
   };
 
