@@ -389,8 +389,8 @@ export default function Home() {
               {t.finalFormTitle}
             </p>
             <form className={styles.modalForm} onSubmit={handleSubmitForm}>
-              <div style={{ textAlign: 'left' }}>
-                <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 600, color: '#334155', marginBottom: '6px' }}>{t.formLabelName}</label>
+              <div className={styles.modalFormGroup}>
+                <label className={styles.modalLabel}>{t.formLabelName}</label>
                 <input 
                   type="text" 
                   placeholder={t.formNamePlaceholder} 
@@ -401,8 +401,8 @@ export default function Home() {
                 />
               </div>
 
-              <div style={{ textAlign: 'left' }}>
-                <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 600, color: '#334155', marginBottom: '6px' }}>{t.formLabelCompany}</label>
+              <div className={styles.modalFormGroup}>
+                <label className={styles.modalLabel}>{t.formLabelCompany}</label>
                 <input 
                   type="text" 
                   placeholder={t.formCompanyPlaceholder} 
@@ -413,14 +413,13 @@ export default function Home() {
                 />
               </div>
 
-              <div style={{ textAlign: 'left' }}>
-                <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 600, color: '#334155', marginBottom: '6px' }}>{t.formLabelSelect}</label>
+              <div className={styles.modalFormGroup}>
+                <label className={styles.modalLabel}>{t.formLabelSelect}</label>
                 <select 
-                  className={styles.modalInput}
+                  className={styles.modalSelect}
                   value={siteType}
                   onChange={(e) => setSiteType(e.target.value)}
                   required
-                  style={{ cursor: 'pointer' }}
                 >
                   <option value={t.formSelect1}>{t.formSelect1}</option>
                   <option value={t.formSelect2}>{t.formSelect2}</option>
@@ -528,8 +527,8 @@ export default function Home() {
             <p className={styles.modalDesc}>{t.modalDesc}</p>
             
             <form className={styles.modalForm} onSubmit={handleSubmitForm}>
-              <div style={{ textAlign: 'left' }}>
-                <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 600, color: '#334155', marginBottom: '6px' }}>{t.formLabelName}</label>
+              <div className={styles.modalFormGroup}>
+                <label className={styles.modalLabel}>{t.formLabelName}</label>
                 <input 
                   type="text" 
                   placeholder={t.formNamePlaceholder} 
@@ -540,8 +539,8 @@ export default function Home() {
                 />
               </div>
 
-              <div style={{ textAlign: 'left' }}>
-                <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 600, color: '#334155', marginBottom: '6px' }}>{t.formLabelCompany}</label>
+              <div className={styles.modalFormGroup}>
+                <label className={styles.modalLabel}>{t.formLabelCompany}</label>
                 <input 
                   type="text" 
                   placeholder={t.formCompanyPlaceholder} 
@@ -552,14 +551,13 @@ export default function Home() {
                 />
               </div>
 
-              <div style={{ textAlign: 'left' }}>
-                <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 600, color: '#334155', marginBottom: '6px' }}>{t.formLabelSelect}</label>
+              <div className={styles.modalFormGroup}>
+                <label className={styles.modalLabel}>{t.formLabelSelect}</label>
                 <select 
-                  className={styles.modalInput}
+                  className={styles.modalSelect}
                   value={siteType}
                   onChange={(e) => setSiteType(e.target.value)}
                   required
-                  style={{ cursor: 'pointer' }}
                 >
                   <option value={t.formSelect1}>{t.formSelect1}</option>
                   <option value={t.formSelect2}>{t.formSelect2}</option>
