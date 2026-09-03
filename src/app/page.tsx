@@ -572,6 +572,9 @@ export default function Home() {
               <button type="submit" className={`${styles.ctaButton} ${styles.ctaFullWidth} ${styles.ctaSolidPink}`}>
                 {t.ctaModal}
               </button>
+              <p style={{ fontSize: '0.82rem', color: '#64748B', marginTop: '12px', textAlign: 'center', fontWeight: 500 }}>
+                {t.modalMicrocopy}
+              </p>
             </form>
           </div>
         </div>
