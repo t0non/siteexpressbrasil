@@ -372,7 +372,7 @@ export default function Home() {
 
         {/* OBJEÇÕES & PERGUNTAS FREQUENTES INTEGRADAS */}
         <div className="container" style={{ marginTop: '60px' }}>
-          <h2 className={styles.sectionTitle} style={{ color: 'white', textAlign: 'center', marginBottom: '30px' }}>{t.faqTitle}</h2>
+          <h2 className={styles.sectionTitle} style={{ color: '#0F172A', textAlign: 'center', marginBottom: '30px' }}>{t.faqTitle}</h2>
           <div className={styles.faqList}>
             <details className={styles.faqItem}>
               <summary className={styles.faqQuestion}>{t.faqQ1}</summary>
