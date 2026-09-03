@@ -107,6 +107,9 @@ export default function Home() {
             <p className={styles.subheadline}>
               <span>{t.heroSubheadline3a}</span><strong className={styles.highlightPink}>{t.heroSubheadline3b}</strong>
             </p>
+            <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', background: 'rgba(255, 45, 122, 0.08)', color: '#FF2D7A', padding: '6px 16px', borderRadius: '100px', fontSize: '0.88rem', fontWeight: 700, marginBottom: '20px' }}>
+              {t.heroPaymentBadge}
+            </div>
             
             <div className={styles.heroCtaWrapper}>
               <button 
@@ -292,6 +295,9 @@ export default function Home() {
               <span style={{ fontSize: '1.2rem', fontWeight: 600, color: 'var(--color-gray)' }}>{t.offerFrom}</span>
               <h2 className={styles.offerPrice}>{t.offerPrice}</h2>
               <p className={styles.offerCondition}>{t.offerCondition}</p>
+              <p style={{ fontSize: '0.95rem', fontWeight: 700, color: '#0F172A', marginTop: '6px' }}>
+                {t.offerNoSubscription}
+              </p>
             </div>
             
             <div style={{ marginTop: '20px', textAlign: 'center' }}>
