@@ -182,9 +182,10 @@ export default function Home() {
         <div className="container">
           <div className={styles.benefitsHeader}>
             <h2 className={styles.sectionTitle}>
-              {t.portfolioTitle1}
-              <span className={styles.highlightPink} style={{ fontWeight: 800 }}>{t.portfolioTitle2}</span>
-              {t.portfolioTitle3}
+              {t.portfolioTitle1}<br/>
+              {t.portfolioTitle2}
+              <span className={styles.highlightPink} style={{ fontWeight: 800 }}>{t.portfolioTitle3}</span>
+              {t.portfolioTitle4}
             </h2>
             <p className={styles.sectionSubtitle}>{t.portfolioSubtitle}</p>
           </div>
