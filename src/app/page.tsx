@@ -15,11 +15,30 @@ export default function Home() {
   const [todayDate, setTodayDate] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [userName, setUserName] = useState("");
+  const [userWhatsapp, setUserWhatsapp] = useState("");
   const [userCompany, setUserCompany] = useState("");
   const [siteType, setSiteType] = useState("Site para apresentar minha empresa");
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [buttonText, setButtonText] = useState(t.ctaModal);
 
   useEffect(() => {
+    if (typeof window !== "undefined") {
+      if (!sessionStorage.getItem('lead_id')) {
+        const randomId = Math.random().toString(16).slice(2, 10).toUpperCase();
+        sessionStorage.setItem('lead_id', `SX-${randomId}`);
+      }
+      if (!sessionStorage.getItem('session_timestamp')) {
+        sessionStorage.setItem('session_timestamp', Date.now().toString());
+      }
+      const params = new URLSearchParams(window.location.search);
+      const trackParams = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'fbclid', 'campaign', 'adset', 'ad'];
+      trackParams.forEach(param => {
+        if (params.has(param)) {
+          sessionStorage.setItem(param, params.get(param) || '');
+        }
+      });
+    }
+
     const today = new Date();
     setTodayDate(today.toLocaleDateString('pt-BR'));
 
@@ -57,38 +76,108 @@ export default function Home() {
     setIsModalOpen(true);
   };
 
-  const handleSubmitForm = (e: React.FormEvent) => {
+  const handleWhatsAppChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    let v = e.target.value.replace(/\D/g, '');
+    if (v.length > 11) v = v.substring(0, 11);
+    if (v.length > 2) v = `(${v.substring(0, 2)}) ${v.substring(2)}`;
+    if (v.length > 10) v = `${v.substring(0, 10)}-${v.substring(10)}`;
+    setUserWhatsapp(v);
+  };
+
+  const getCookie = (name: string) => {
+    if (typeof document === 'undefined') return '';
+    const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+    if (match) return match[2];
+    return '';
+  };
+
+  const handleSubmitForm = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!userName || !userCompany) return;
-    if (isSubmitting) return; // Evita duplo clique e disparos duplicados
+    
+    const cleanPhone = userWhatsapp.replace(/\D/g, '');
+    if (!userName || !userCompany || cleanPhone.length < 10) return;
+    if (isSubmitting) return;
 
     setIsSubmitting(true);
+    setButtonText("ENVIANDO...");
 
     const currentSiteType = siteType || t.formSelect1;
+    const finalPhone = cleanPhone.startsWith('55') ? cleanPhone : `55${cleanPhone}`;
+    const lead_id = sessionStorage.getItem('lead_id') || `SX-FALLBACK`;
+    const fbclid = sessionStorage.getItem('fbclid') || '';
+    const utm_source = sessionStorage.getItem('utm_source') || '';
+    const session_timestamp = sessionStorage.getItem('session_timestamp') || Date.now().toString();
 
-    // GTM: Track lead (apenas campos validados, sem dados pessoais)
-    if (typeof window !== "undefined") {
-      (window as any).dataLayer = (window as any).dataLayer || [];
-      (window as any).dataLayer.push({
-        event: 'siteexpress_lead',
-        project_type: currentSiteType
-      });
+    let origin = "ORGÂNICO";
+    if (fbclid || /facebook|instagram|meta/i.test(utm_source)) {
+      origin = "META ADS";
     }
 
-    // Dispara silenciosamente em background para salvar o lead
-    fetch('/api/save-lead', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ userName, userCompany, siteType: currentSiteType })
-    }).catch(() => {}); // fire and forget
+    let fbc = getCookie('_fbc');
+    if (!fbc && fbclid) {
+      fbc = `fb.1.${session_timestamp}.${fbclid}`;
+    }
+    const fbp = getCookie('_fbp');
 
-    const text = encodeURIComponent(t.whatsappMessage(userName, userCompany, currentSiteType));
-    window.open(`https://wa.me/553172247907?text=${text}`, '_blank');
+    const payload = {
+      lead_id,
+      name: userName,
+      whatsapp: finalPhone,
+      business: userCompany,
+      project_type: currentSiteType,
+      origin,
+      campaign: sessionStorage.getItem('campaign') || '',
+      adset: sessionStorage.getItem('adset') || '',
+      ad: sessionStorage.getItem('ad') || '',
+      utm_source,
+      utm_medium: sessionStorage.getItem('utm_medium') || '',
+      utm_campaign: sessionStorage.getItem('utm_campaign') || '',
+      utm_content: sessionStorage.getItem('utm_content') || '',
+      fbclid,
+      fbc,
+      fbp
+    };
+
+    const text = encodeURIComponent(t.whatsappMessage(userName, userCompany, currentSiteType) + `\n\nRef: ${lead_id}`);
+    const wppUrl = `https://wa.me/553172247907?text=${text}`;
+
+    const sendToApi = async (retryCount = 0): Promise<boolean> => {
+      try {
+        const res = await fetch('/api/leads', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        const json = await res.json();
+        if (json.ok) return true;
+        throw new Error(json.error || 'API Error');
+      } catch (err) {
+        if (retryCount < 1) {
+          return await sendToApi(retryCount + 1);
+        }
+        console.error("Failed to send lead to Sheets after retry", err);
+        return false;
+      }
+    };
+
+    const success = await sendToApi();
+
+    if (success) {
+      if (typeof window !== "undefined") {
+        (window as any).dataLayer = (window as any).dataLayer || [];
+        (window as any).dataLayer.push({
+          event: 'siteexpress_lead',
+          project_type: currentSiteType
+        });
+      }
+    }
+
+    window.open(wppUrl, '_blank');
     setIsModalOpen(false);
-
-    // Libera o lock após um tempinho caso o usuário volte pra tela
+    
     setTimeout(() => {
       setIsSubmitting(false);
+      setButtonText(t.ctaModal);
     }, 2000);
   };
 
@@ -325,7 +414,7 @@ export default function Home() {
             
             <div style={{ marginTop: '20px', textAlign: 'center' }}>
               <button onClick={() => handleWhatsAppClick('pricing')} className={`${styles.ctaButton} ${styles.ctaSolidPink} ${styles.ctaFullWidth}`}>
-                {t.ctaForm}
+                {buttonText === t.ctaModal ? t.ctaForm : buttonText}
               </button>
             </div>
           </div>
@@ -459,6 +548,18 @@ export default function Home() {
                 />
               </div>
 
+
+              <div className={styles.modalFormGroup}>
+                <label className={styles.modalLabel}>{t.formLabelWhatsapp}</label>
+                <input 
+                  type="tel" 
+                  placeholder={t.formWhatsappPlaceholder} 
+                  className={styles.modalInput}
+                  value={userWhatsapp}
+                  onChange={handleWhatsAppChange}
+                  required
+                />
+              </div>
               <div className={styles.modalFormGroup}>
                 <label className={styles.modalLabel}>{t.formLabelCompany}</label>
                 <input 
@@ -489,7 +590,7 @@ export default function Home() {
               </div>
 
               <button type="submit" className={`${styles.ctaButton} ${styles.ctaSolidPink} ${styles.ctaFullWidth}`}>
-                {t.ctaForm}
+                {buttonText === t.ctaModal ? t.ctaForm : buttonText}
               </button>
             </form>
           </div>
@@ -560,6 +661,18 @@ export default function Home() {
                 />
               </div>
 
+
+              <div className={styles.modalFormGroup}>
+                <label className={styles.modalLabel}>{t.formLabelWhatsapp}</label>
+                <input 
+                  type="tel" 
+                  placeholder={t.formWhatsappPlaceholder} 
+                  className={styles.modalInput}
+                  value={userWhatsapp}
+                  onChange={handleWhatsAppChange}
+                  required
+                />
+              </div>
               <div className={styles.modalFormGroup}>
                 <label className={styles.modalLabel}>{t.formLabelCompany}</label>
                 <input 
@@ -590,7 +703,7 @@ export default function Home() {
               </div>
 
               <button type="submit" className={`${styles.ctaButton} ${styles.ctaFullWidth} ${styles.ctaSolidPink}`}>
-                {t.ctaModal}
+                {buttonText}
               </button>
               <p style={{ fontSize: '0.82rem', color: '#0F172A', marginTop: '12px', textAlign: 'center', fontWeight: 600 }}>
                 {t.modalMicrocopy}
