@@ -778,6 +778,10 @@
   text-align: center;
 }
 
+.finalCtaSection .modalLabel {
+  color: #F8FAFC;
+}
+
 .finalTitle {
   font-size: var(--text-xl);
   font-weight: 800;
