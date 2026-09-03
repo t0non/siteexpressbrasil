@@ -101,8 +101,7 @@ export default function Home() {
             </div>
             
             <h1 className={styles.headline}>
-              {t.heroHeadlinePart1}<br />
-              <span className={styles.highlightPink}>{t.heroHeadlinePart2}</span>
+              {t.heroHeadlinePart1}<span className={styles.highlightPink}>{t.heroHeadlinePart2}</span>
             </h1>
             
             <p className={styles.subheadline}>
