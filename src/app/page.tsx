@@ -514,7 +514,10 @@ export default function Home() {
         <div className={styles.modalOverlay} onClick={() => setIsModalOpen(false)}>
           <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
             <button className={styles.closeModal} onClick={() => setIsModalOpen(false)}>×</button>
-            <h3 className={styles.modalTitle}>{t.modalTitle}</h3>
+            <h3 className={styles.modalTitle} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', flexWrap: 'wrap' }}>
+              <span>{t.modalTitle}</span>
+              <img src="/tchau.png?v=1" alt="Tchau" width="34" height="34" style={{ objectFit: 'contain', display: 'inline-block' }} />
+            </h3>
             <p className={styles.modalDesc}>{t.modalDesc}</p>
             
             <form className={styles.modalForm} onSubmit={handleSubmitForm}>
