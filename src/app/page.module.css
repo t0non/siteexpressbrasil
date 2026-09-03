@@ -552,7 +552,7 @@
   left: 50%;
   transform: translateX(-50%);
   color: var(--color-magenta, #FF2D7A);
-  font-size: 0.6rem;
+  font-size: 0.62rem;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.03em;
@@ -560,6 +560,14 @@
   line-height: 1;
   pointer-events: none;
   text-align: center;
+  z-index: 2;
+}
+
+@media (max-width: 768px) {
+  .browserBarText {
+    font-size: 0.52rem;
+    letter-spacing: 0.02em;
+  }
 }
 
 .browserBar span {
