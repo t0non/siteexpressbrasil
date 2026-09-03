@@ -176,6 +176,73 @@ export default function Home() {
         </div>
       </section>
 
+
+      {/* SEÇÃO PORTFOLIO */}
+      <section className={styles.portfolioSection}>
+        <div className="container">
+          <div className={styles.benefitsHeader}>
+            <h2 className={styles.sectionTitle}>
+              {t.portfolioTitle1}
+              <span className={styles.highlightPink} style={{ fontWeight: 800 }}>{t.portfolioTitle2}</span>
+              {t.portfolioTitle3}
+            </h2>
+            <p className={styles.sectionSubtitle}>{t.portfolioSubtitle}</p>
+          </div>
+          
+          <div className={styles.portfolioGrid}>
+            
+            <div className={styles.portfolioItem}>
+              <div className={styles.browserMockup}>
+                <div className={styles.browserBar}>
+                  <div className={styles.browserDots}><span></span><span></span><span></span></div>
+                  <span className={styles.browserBarText}>{t.portfolioBrowserText}</span>
+                </div>
+                <div className={styles.browserIframeWrapper}>
+                  <iframe src="https://lp-lex-aero.vercel.app/" title="Portfolio Preview"></iframe>
+                </div>
+              </div>
+            </div>
+
+            <div className={styles.portfolioItem}>
+              <div className={styles.browserMockup}>
+                <div className={styles.browserBar}>
+                  <div className={styles.browserDots}><span></span><span></span><span></span></div>
+                  <span className={styles.browserBarText}>{t.portfolioBrowserText}</span>
+                </div>
+                <div className={styles.browserIframeWrapper}>
+                  <iframe src="https://lp-bcredf-cil.vercel.app/" title="Portfolio Preview"></iframe>
+                </div>
+              </div>
+            </div>
+
+            <div className={styles.portfolioItem}>
+              <div className={styles.browserMockup}>
+                <div className={styles.browserBar}>
+                  <div className={styles.browserDots}><span></span><span></span><span></span></div>
+                  <span className={styles.browserBarText}>{t.portfolioBrowserText}</span>
+                </div>
+                <div className={styles.browserIframeWrapper}>
+                  <iframe src="https://lp-gs-terapias.vercel.app/" title="Portfolio Preview"></iframe>
+                </div>
+              </div>
+            </div>
+
+            <div className={styles.portfolioItem}>
+              <div className={styles.browserMockup}>
+                <div className={styles.browserBar}>
+                  <div className={styles.browserDots}><span></span><span></span><span></span></div>
+                  <span className={styles.browserBarText}>{t.portfolioBrowserText}</span>
+                </div>
+                <div className={styles.browserIframeWrapper}>
+                  <iframe src="https://lp-obras-servi-os.vercel.app/" title="Portfolio Preview"></iframe>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
       {/* SEÇÃO 2 - OFERTA */}
       <section className={styles.offerSection}>
         <div className={`container`}>
@@ -190,23 +257,23 @@ export default function Home() {
             <ul className={styles.pricingList}>
               <li className={`${styles.pricingListItem} ${styles.highlightedItem}`}>
                 <span>{t.offerItem1}</span>
-                <span className={styles.pricingItemValue}>R$ 200,00</span>
+                <span className={styles.pricingItemValue}>R$ 150,00</span>
               </li>
               <li className={styles.pricingListItem}>
                 <span>{t.offerItem2}</span>
-                <span className={styles.pricingItemValue}>R$ 350,00</span>
+                <span className={styles.pricingItemValue}>R$ 250,00</span>
               </li>
               <li className={styles.pricingListItem}>
                 <span>{t.offerItem3}</span>
-                <span className={styles.pricingItemValue}>R$ 150,00</span>
+                <span className={styles.pricingItemValue}>R$ 100,00</span>
               </li>
               <li className={styles.pricingListItem}>
                 <span>{t.offerItem4}</span>
-                <span className={styles.pricingItemValue}>R$ 150,00</span>
+                <span className={styles.pricingItemValue}>R$ 100,00</span>
               </li>
               <li className={styles.pricingListItem}>
                 <span>{t.offerItem5}</span>
-                <span className={styles.pricingItemValue}>R$ 200,00</span>
+                <span className={styles.pricingItemValue}>R$ 100,00</span>
               </li>
               <li className={styles.pricingListItem}>
                 <span>{t.offerItem6}</span>
@@ -214,13 +281,13 @@ export default function Home() {
               </li>
               <li className={styles.pricingListItem}>
                 <span>{t.offerItem7}</span>
-                <span className={styles.pricingItemValue}>R$ 100,00</span>
+                <span className={styles.pricingItemValue}>R$ 50,00</span>
               </li>
             </ul>
             
             <div className={styles.pricingTotal}>
               <span>{t.offerTotalEstimate}</span>
-              <span className={styles.redStrikethrough}>R$ 500,00</span>
+              <span className={styles.redStrikethrough}>R$ 800,00</span>
             </div>
 
             <div className={styles.pricingFinal}>
@@ -290,7 +357,7 @@ export default function Home() {
               {t.guaranteeTitle1}<span className={styles.highlightPink} style={{ fontWeight: 800 }}>{t.guaranteeTitle2}</span>{t.guaranteeTitle3}
             </h2>
             <p className={styles.guaranteeText}>
-              {t.guaranteeText}<strong>{t.guaranteeTextBold}</strong>{t.guaranteeTerms}<a href="#" style={{color: 'var(--color-magenta)', textDecoration: 'underline'}}>{t.guaranteeLink}</a>.
+              {t.guaranteeText}<strong>{t.guaranteeTextBold}</strong>.
             </p>
             <div className={styles.guaranteeFeature}>
               <div className={styles.guaranteeCheck}>✓</div>
@@ -379,6 +446,14 @@ export default function Home() {
               <summary className={styles.faqQuestion}>{t.faqQ4}</summary>
               <div className={styles.faqAnswer}>{t.faqA4}</div>
             </details>
+            <details className={styles.faqItem}>
+              <summary className={styles.faqQuestion}>{t.faqQ5}</summary>
+              <div className={styles.faqAnswer}>{t.faqA5}</div>
+            </details>
+            <details className={styles.faqItem}>
+              <summary className={styles.faqQuestion}>{t.faqQ6}</summary>
+              <div className={styles.faqAnswer}>{t.faqA6}</div>
+            </details>
           </div>
           <div style={{ display: 'flex', justifyContent: 'center', marginTop: '40px' }}>
             <button 
@@ -396,7 +471,10 @@ export default function Home() {
         <div className={`container ${styles.footerContainer}`}>
           <div className={styles.footerBrand}>
             <img src="/logo_siteexpress.png?v=2" alt="SiteExpress Logo" width="160" height="37" className={styles.logoImage} style={{ filter: 'brightness(0) invert(1)' }} />
-            <p className={styles.footerBio}>{t.footerBio}</p>
+            <p className={styles.footerBio}>
+              {t.footerBio1}
+              <span className={styles.highlightPink} style={{ fontWeight: 800 }}>{t.footerBio2}</span>
+            </p>
           </div>
           
           <div className={styles.footerGrid}>

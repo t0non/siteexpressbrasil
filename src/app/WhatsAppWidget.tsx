@@ -109,7 +109,7 @@ export default function WhatsAppWidget({ lang = "pt" }: { lang?: Language }) {
                 <img src="/widget_mariajulia.jpeg?v=3" alt="SiteExpress" width="45" height="45" style={{ objectFit: 'cover' }} />
               </div>
               <div>
-                <strong>SiteExpress</strong>
+                <strong>Maria Julia | Site Express</strong>
                 <span>Online</span>
               </div>
             </div>
@@ -125,7 +125,7 @@ export default function WhatsAppWidget({ lang = "pt" }: { lang?: Language }) {
           </div>
           <div className={styles.chatFooter}>
             <button className={styles.chatCta} onClick={handleWhatsAppClick}>
-              <span className={styles.whatsappIcon}>💬</span> Falar no WhatsApp
+              {t.widgetButton}
             </button>
           </div>
         </div>

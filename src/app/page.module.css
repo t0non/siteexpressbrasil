@@ -234,7 +234,7 @@
 
 .benefitsGrid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: var(--space-md);
   margin-bottom: var(--space-xl);
   text-align: left;
@@ -313,7 +313,7 @@
 
 .offerGrid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: var(--space-md);
   margin-bottom: var(--space-xl);
   text-align: left;
@@ -495,7 +495,7 @@
 
 .portfolioGrid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: var(--space-md);
   margin-top: var(--space-xl);
 }
@@ -525,12 +525,39 @@
 
 .browserBar {
   background: #F4F5F7;
-  height: 24px;
+  height: 28px;
   display: flex;
   align-items: center;
-  padding: 0 10px;
-  gap: 5px;
+  justify-content: center;
+  position: relative;
   border-bottom: 1px solid rgba(0,0,0,0.03);
+}
+
+.browserDots {
+  position: absolute;
+  left: 12px;
+  display: flex;
+  gap: 6px;
+}
+
+.browserDots span {
+  width: 8px;
+  height: 8px;
+  background: #E0E2E7;
+  border-radius: 50%;
+}
+
+.browserBarText {
+  color: var(--color-magenta, #FF2D7A);
+  font-size: 0.65rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+  line-height: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 70%;
 }
 
 .browserBar span {
@@ -547,6 +574,27 @@
   background: rgba(0,0,0,0.02);
 }
 
+.browserIframeWrapper {
+  position: relative;
+  width: 100%;
+  height: 400px;
+  background: var(--color-white);
+  overflow: hidden;
+}
+
+.browserIframeWrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 300%;
+  height: 300%;
+  transform: scale(0.333333);
+  transform-origin: 0 0;
+  border: none;
+  display: block;
+}
+
+
 /* PROCESS SECTION */
 .processSection {
   padding: var(--section-padding);
@@ -556,7 +604,7 @@
 
 .processGrid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: var(--space-md);
   margin-top: var(--space-xl);
   margin-bottom: var(--space-lg);
@@ -919,12 +967,12 @@ details[open] .faqQuestion::after {
   .heroImage {
   position: relative;
   z-index: 1;
-  width: 135%;
-  max-width: 800px;
+  width: 100%;
+  max-width: 100%;
   height: auto;
   object-fit: contain;
-  margin-right: -15%;
-  transform: translateX(40px) translateY(-15px);
+  margin: 0 auto;
+  transform: none;
 }
 
   .tag1 { left: -10px; }
