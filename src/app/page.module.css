@@ -596,9 +596,9 @@
 
 @media (max-width: 768px) {
   .browserIframeWrapper iframe {
-    width: 400%;
-    height: 400%;
-    transform: scale(0.25);
+    width: 250%;
+    height: 250%;
+    transform: scale(0.4);
   }
 }
 
