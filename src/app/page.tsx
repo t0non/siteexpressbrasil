@@ -207,7 +207,9 @@ export default function Home() {
               <span>{t.benefitsTitle}</span>
               <img src="/olho_iphone.png?v=1" alt="Olho iPhone" width="44" height="44" style={{ objectFit: 'contain', display: 'inline-block' }} />
             </h2>
-            <p className={styles.sectionSubtitle}>{t.benefitsSubtitle}</p>
+            <p className={styles.sectionSubtitle} style={{ color: '#0F172A', fontWeight: 500 }}>
+              {t.benefitsSubtitle1}<strong>{t.benefitsSubtitle2}</strong>
+            </p>
           </div>
           <div className={styles.benefitsGrid}>
             <div className={`${styles.benefitCard} ${styles.googleCard}`}>
