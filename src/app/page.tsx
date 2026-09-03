@@ -134,7 +134,7 @@ export default function Home() {
               <span className={styles.highlightPink} style={{ fontWeight: 800 }}>{t.portfolioTitle3}</span>
               <span style={{ whiteSpace: 'nowrap' }}>
                 {t.portfolioTitle4}
-                <img src="/felicidad.png?v=1" alt="Felicidade" width="30" height="30" style={{ objectFit: 'contain', display: 'inline-block', verticalAlign: '-4px', marginLeft: '6px' }} />
+                <img src="/felicidad.png?v=1" alt="Felicidade" width="46" height="46" style={{ objectFit: 'contain', display: 'inline-block', verticalAlign: '-8px', marginLeft: '8px' }} />
               </span>
             </h2>
             <p className={styles.sectionSubtitle}>{t.portfolioSubtitle}</p>
