@@ -577,28 +577,21 @@
 .browserIframeWrapper {
   position: relative;
   width: 100%;
-  aspect-ratio: 4 / 3;
+  height: 450px;
   background: var(--color-white);
   overflow: hidden;
 }
 
 .browserIframeWrapper iframe {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 300%;
-  height: 300%;
-  transform: scale(0.333333);
-  transform-origin: 0 0;
+  width: 100%;
+  height: 100%;
   border: none;
   display: block;
 }
 
 @media (max-width: 768px) {
-  .browserIframeWrapper iframe {
-    width: 250%;
-    height: 250%;
-    transform: scale(0.4);
+  .browserIframeWrapper {
+    height: 400px;
   }
 }
 
