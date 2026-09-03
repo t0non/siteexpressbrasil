@@ -126,7 +126,7 @@ export default function Home() {
           </div>
           
           <div className={styles.heroVisual}>
-             <Image src="/hero_2.png" alt="Mulher trabalhando MacBook SiteExpress" width={600} height={500} className={styles.heroImage} priority />
+             <img src="/hero_2.png?v=4" alt="Mulher trabalhando MacBook SiteExpress" width="600" height="500" className={styles.heroImage} />
           </div>
         </div>
       </section>
