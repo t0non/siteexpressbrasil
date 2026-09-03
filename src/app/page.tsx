@@ -385,9 +385,6 @@ export default function Home() {
             {t.finalPersuasion}
           </p>
           <div style={{ marginTop: '30px', maxWidth: '400px', margin: '30px auto 0 auto' }}>
-            <p style={{ fontSize: '1rem', color: '#94A3B8', marginBottom: '16px' }}>
-              {t.finalFormTitle}
-            </p>
             <form className={styles.modalForm} onSubmit={handleSubmitForm}>
               <div className={styles.modalFormGroup}>
                 <label className={styles.modalLabel}>{t.formLabelName}</label>
