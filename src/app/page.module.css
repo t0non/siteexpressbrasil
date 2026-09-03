@@ -631,7 +631,7 @@
 
 .processGrid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: var(--space-md);
   margin-top: var(--space-xl);
   margin-bottom: var(--space-lg);
