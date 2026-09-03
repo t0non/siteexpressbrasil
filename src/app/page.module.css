@@ -548,6 +548,9 @@
 }
 
 .browserBarText {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
   color: var(--color-magenta, #FF2D7A);
   font-size: 0.6rem;
   font-weight: 600;
@@ -556,6 +559,7 @@
   white-space: nowrap;
   line-height: 1;
   pointer-events: none;
+  text-align: center;
 }
 
 .browserBar span {
