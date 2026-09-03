@@ -203,7 +203,10 @@ export default function Home() {
       <section className={styles.benefitsSection}>
         <div className="container">
           <div className={styles.benefitsHeader}>
-            <h2 className={styles.sectionTitle}>{t.benefitsTitle}</h2>
+            <h2 className={styles.sectionTitle} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px', flexWrap: 'wrap' }}>
+              <span>{t.benefitsTitle}</span>
+              <img src="/olho_iphone.png?v=1" alt="Olho iPhone" width="44" height="44" style={{ objectFit: 'contain', display: 'inline-block' }} />
+            </h2>
             <p className={styles.sectionSubtitle}>{t.benefitsSubtitle}</p>
           </div>
           <div className={styles.benefitsGrid}>
