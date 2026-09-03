@@ -72,7 +72,7 @@
   width: 58px;
   height: 58px;
   border-radius: 50%;
-  box-shadow: 0 4px 16px rgba(37, 211, 102, 0.4);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -272,7 +272,7 @@
   justify-content: center;
   gap: 8px;
   transition: background 0.2s, transform 0.1s;
-  box-shadow: 0 2px 8px rgba(37, 211, 102, 0.35);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
 }
 
 .chatCta:hover {
