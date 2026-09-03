@@ -128,14 +128,12 @@ export default function Home() {
       <section className={styles.portfolioSection}>
         <div className="container">
           <div className={styles.benefitsHeader}>
-            <h2 className={styles.sectionTitle} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', flexWrap: 'wrap' }}>
-              <span>{t.portfolioTitle1}</span>
-              <span>
-                {t.portfolioTitle2}
-                <span className={styles.highlightPink} style={{ fontWeight: 800 }}>{t.portfolioTitle3}</span>
-                {t.portfolioTitle4}
-              </span>
-              <img src="/felicidad.png?v=1" alt="Felicidade" width="44" height="44" style={{ objectFit: 'contain', display: 'inline-block' }} />
+            <h2 className={styles.sectionTitle}>
+              {t.portfolioTitle1}<br/>
+              {t.portfolioTitle2}
+              <span className={styles.highlightPink} style={{ fontWeight: 800 }}>{t.portfolioTitle3}</span>
+              {t.portfolioTitle4}
+              <img src="/felicidad.png?v=1" alt="Felicidade" width="34" height="34" style={{ objectFit: 'contain', display: 'inline-block', verticalAlign: '-6px', marginLeft: '6px' }} />
             </h2>
             <p className={styles.sectionSubtitle}>{t.portfolioSubtitle}</p>
           </div>
