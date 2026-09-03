@@ -215,13 +215,15 @@ export default function Home() {
                 <Image src="/google.png" alt="Google" width={64} height={64} style={{ objectFit: 'contain' }} />
               </div>
               <h3>
-                Buscas do <span style={{color: '#4285F4'}}>G</span><span style={{color: '#EA4335'}}>o</span><span style={{color: '#FBBC05'}}>o</span><span style={{color: '#4285F4'}}>g</span><span style={{color: '#34A853'}}>l</span><span style={{color: '#EA4335'}}>e</span>
+                Buscas do <span style={{color: '#4285F4'}}>G</span><span style={{color: '#EA4335'}}>o</span><span style={{color: '#FBBC05'}}>o</span><span style={{color: '#4285F4'}}>g</span><span style={{color: '#34A853'}}>l</span><span style={{color: '#EA4335'}}>e</span>{t.benefit1Title}
               </h3>
               <p>{t.benefit1Desc}</p>
             </div>
             <div className={styles.benefitCard}>
-              <div className={styles.benefitIcon} style={{ fontSize: '2.5rem', marginBottom: '12px' }}>
-                🛡️
+              <div className={styles.benefitIcon} style={{ display: 'flex', gap: '16px', alignItems: 'center', justifyContent: 'center' }}>
+                <Image src="/claude.png" alt="Claude" width={44} height={44} style={{ objectFit: 'contain' }} />
+                <Image src="/gemini.png" alt="Gemini" width={90} height={40} style={{ objectFit: 'contain' }} />
+                <Image src="/chatgpt.png" alt="ChatGPT" width={44} height={44} style={{ objectFit: 'contain' }} />
               </div>
               <h3>{t.benefit2Title}</h3>
               <p>{t.benefit2Desc}</p>
