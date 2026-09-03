@@ -596,29 +596,19 @@
   position: absolute;
   top: 0;
   left: 0;
-  width: 1280px;
-  height: 880px;
-  transform: scale(0.43);
+  width: calc(100% / 0.38);
+  height: calc(100% / 0.38);
+  transform: scale(0.38);
   transform-origin: 0 0;
   border: none;
   display: block;
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 768px) {
   .browserIframeWrapper iframe {
-    transform: scale(0.38);
-  }
-}
-
-@media (max-width: 900px) {
-  .browserIframeWrapper iframe {
-    transform: scale(0.28);
-  }
-}
-
-@media (max-width: 400px) {
-  .browserIframeWrapper iframe {
-    transform: scale(0.25);
+    width: calc(100% / 0.32);
+    height: calc(100% / 0.32);
+    transform: scale(0.32);
   }
 }
 
