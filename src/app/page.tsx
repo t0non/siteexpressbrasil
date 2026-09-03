@@ -461,7 +461,7 @@ export default function Home() {
                 </select>
               </div>
 
-              <button type="submit" className={`${styles.ctaButton} ${styles.ctaGiant} ${styles.ctaSolidPink} ${styles.ctaFullWidth}`}>
+              <button type="submit" className={`${styles.ctaButton} ${styles.ctaSolidPink} ${styles.ctaFullWidth}`}>
                 {t.ctaForm}
               </button>
             </form>

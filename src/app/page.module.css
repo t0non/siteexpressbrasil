@@ -60,9 +60,15 @@
 }
 
 .ctaFullWidth {
-  width: 100%;
-  height: 56px;
+  width: 100% !important;
+  max-width: 100% !important;
+  height: 58px;
   font-size: var(--text-base);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }
 
 .ctaSolidPink {
