@@ -16,7 +16,7 @@ export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [userName, setUserName] = useState("");
   const [userCompany, setUserCompany] = useState("");
-  const [siteType, setSiteType] = useState("Institucional");
+  const [siteType, setSiteType] = useState("Site para apresentar minha empresa");
 
   useEffect(() => {
     const today = new Date();
@@ -51,17 +51,16 @@ export default function Home() {
     e.preventDefault();
     if (!userName || !userCompany) return;
 
+    const currentSiteType = siteType || t.formSelect1;
+
     // Dispara silenciosamente em background para salvar o lead
     fetch('/api/save-lead', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ userName, userCompany, siteType })
-    }).catch(() => {}); // fire and forget (não trava a tela se falhar)
+      body: JSON.stringify({ userName, userCompany, siteType: currentSiteType })
+    }).catch(() => {}); // fire and forget
 
-    const userConfirmed = window.confirm(t.whatsappConfirm);
-    if (!userConfirmed) return;
-
-    const text = encodeURIComponent(t.whatsappMessage(userName, userCompany, siteType));
+    const text = encodeURIComponent(t.whatsappMessage(userName, userCompany, currentSiteType));
     window.open(`https://wa.me/553172247907?text=${text}`, '_blank');
     setIsModalOpen(false);
   };
@@ -390,37 +389,50 @@ export default function Home() {
               {t.finalFormTitle}
             </p>
             <form className={styles.modalForm} onSubmit={handleSubmitForm}>
-              <input 
-                type="text" 
-                placeholder={t.formNamePlaceholder} 
-                className={styles.modalInput}
-                value={userName}
-                onChange={(e) => setUserName(e.target.value)}
-                required
-              />
-              <input 
-                type="text" 
-                placeholder={t.formCompanyPlaceholder} 
-                className={styles.modalInput}
-                value={userCompany}
-                onChange={(e) => setUserCompany(e.target.value)}
-                required
-              />
-              <select 
-                className={styles.modalInput}
-                value={siteType}
-                onChange={(e) => setSiteType(e.target.value)}
-                required
-                style={{ cursor: 'pointer' }}
-              >
-                <option value="Institucional">{t.formSelect1}</option>
-                <option value="Landing Page">{t.formSelect2}</option>
-                <option value="E-commerce">{t.formSelect3}</option>
-                <option value="Blog/Portal">{t.formSelect4}</option>
-                <option value="Outro">{t.formSelect5}</option>
-              </select>
+              <div style={{ textAlign: 'left' }}>
+                <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 600, color: '#334155', marginBottom: '6px' }}>{t.formLabelName}</label>
+                <input 
+                  type="text" 
+                  placeholder={t.formNamePlaceholder} 
+                  className={styles.modalInput}
+                  value={userName}
+                  onChange={(e) => setUserName(e.target.value)}
+                  required
+                />
+              </div>
+
+              <div style={{ textAlign: 'left' }}>
+                <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 600, color: '#334155', marginBottom: '6px' }}>{t.formLabelCompany}</label>
+                <input 
+                  type="text" 
+                  placeholder={t.formCompanyPlaceholder} 
+                  className={styles.modalInput}
+                  value={userCompany}
+                  onChange={(e) => setUserCompany(e.target.value)}
+                  required
+                />
+              </div>
+
+              <div style={{ textAlign: 'left' }}>
+                <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 600, color: '#334155', marginBottom: '6px' }}>{t.formLabelSelect}</label>
+                <select 
+                  className={styles.modalInput}
+                  value={siteType}
+                  onChange={(e) => setSiteType(e.target.value)}
+                  required
+                  style={{ cursor: 'pointer' }}
+                >
+                  <option value={t.formSelect1}>{t.formSelect1}</option>
+                  <option value={t.formSelect2}>{t.formSelect2}</option>
+                  <option value={t.formSelect3}>{t.formSelect3}</option>
+                  <option value={t.formSelect4}>{t.formSelect4}</option>
+                  <option value={t.formSelect5}>{t.formSelect5}</option>
+                  <option value={t.formSelect6}>{t.formSelect6}</option>
+                </select>
+              </div>
+
               <button type="submit" className={`${styles.ctaButton} ${styles.ctaGiant} ${styles.ctaSolidPink} ${styles.ctaFullWidth}`}>
-                {t.ctaHero} ➔
+                {t.ctaForm}
               </button>
             </form>
           </div>
@@ -516,35 +528,48 @@ export default function Home() {
             <p className={styles.modalDesc}>{t.modalDesc}</p>
             
             <form className={styles.modalForm} onSubmit={handleSubmitForm}>
-              <input 
-                type="text" 
-                placeholder={t.formNamePlaceholder} 
-                className={styles.modalInput}
-                value={userName}
-                onChange={(e) => setUserName(e.target.value)}
-                required
-              />
-              <input 
-                type="text" 
-                placeholder={t.formCompanyPlaceholder} 
-                className={styles.modalInput}
-                value={userCompany}
-                onChange={(e) => setUserCompany(e.target.value)}
-                required
-              />
-              <select 
-                className={styles.modalInput}
-                value={siteType}
-                onChange={(e) => setSiteType(e.target.value)}
-                required
-                style={{ cursor: 'pointer' }}
-              >
-                <option value="Institucional">{t.formSelect1}</option>
-                <option value="Landing Page">{t.formSelect2}</option>
-                <option value="E-commerce">{t.formSelect3}</option>
-                <option value="Blog/Portal">{t.formSelect4}</option>
-                <option value="Outro">{t.formSelect5}</option>
-              </select>
+              <div style={{ textAlign: 'left' }}>
+                <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 600, color: '#334155', marginBottom: '6px' }}>{t.formLabelName}</label>
+                <input 
+                  type="text" 
+                  placeholder={t.formNamePlaceholder} 
+                  className={styles.modalInput}
+                  value={userName}
+                  onChange={(e) => setUserName(e.target.value)}
+                  required
+                />
+              </div>
+
+              <div style={{ textAlign: 'left' }}>
+                <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 600, color: '#334155', marginBottom: '6px' }}>{t.formLabelCompany}</label>
+                <input 
+                  type="text" 
+                  placeholder={t.formCompanyPlaceholder} 
+                  className={styles.modalInput}
+                  value={userCompany}
+                  onChange={(e) => setUserCompany(e.target.value)}
+                  required
+                />
+              </div>
+
+              <div style={{ textAlign: 'left' }}>
+                <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 600, color: '#334155', marginBottom: '6px' }}>{t.formLabelSelect}</label>
+                <select 
+                  className={styles.modalInput}
+                  value={siteType}
+                  onChange={(e) => setSiteType(e.target.value)}
+                  required
+                  style={{ cursor: 'pointer' }}
+                >
+                  <option value={t.formSelect1}>{t.formSelect1}</option>
+                  <option value={t.formSelect2}>{t.formSelect2}</option>
+                  <option value={t.formSelect3}>{t.formSelect3}</option>
+                  <option value={t.formSelect4}>{t.formSelect4}</option>
+                  <option value={t.formSelect5}>{t.formSelect5}</option>
+                  <option value={t.formSelect6}>{t.formSelect6}</option>
+                </select>
+              </div>
+
               <button type="submit" className={`${styles.ctaButton} ${styles.ctaFullWidth} ${styles.ctaSolidPink}`}>
                 {t.ctaModal}
               </button>
