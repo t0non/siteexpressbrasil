@@ -131,53 +131,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* SEÇÃO BENEFÍCIOS */}
-      <section className={styles.benefitsSection}>
-        <div className="container">
-          <div className={styles.benefitsHeader}>
-            <h2 className={styles.sectionTitle}>{t.benefitsTitle}</h2>
-            <p className={styles.sectionSubtitle}>{t.benefitsSubtitle}</p>
-          </div>
-          <div className={styles.benefitsGrid}>
-            <div className={`${styles.benefitCard} ${styles.googleCard}`}>
-              <div className={styles.benefitIcon}>
-                <Image src="/google.png" alt="Google" width={64} height={64} style={{ objectFit: 'contain' }} />
-              </div>
-              <h3>
-                Buscas do <span style={{color: '#4285F4'}}>G</span><span style={{color: '#EA4335'}}>o</span><span style={{color: '#FBBC05'}}>o</span><span style={{color: '#4285F4'}}>g</span><span style={{color: '#34A853'}}>l</span><span style={{color: '#EA4335'}}>e</span>{t.benefit1Title}
-              </h3>
-              <p>{t.benefit1Desc}</p>
-            </div>
-            <div className={styles.benefitCard}>
-              <div className={styles.benefitIcon} style={{ display: 'flex', gap: '16px', alignItems: 'center', justifyContent: 'center' }}>
-                <Image src="/claude.png" alt="Claude" width={44} height={44} style={{ objectFit: 'contain' }} />
-                <Image src="/gemini.png" alt="Gemini" width={90} height={40} style={{ objectFit: 'contain' }} />
-                <Image src="/chatgpt.png" alt="ChatGPT" width={44} height={44} style={{ objectFit: 'contain' }} />
-              </div>
-              <h3>{t.benefit2Title}</h3>
-              <p>{t.benefit2Desc}</p>
-            </div>
-            <div className={styles.benefitCard}>
-              <div className={styles.benefitIcon}>
-                <img src="/vendas.png?v=3" alt="Vendas" width="64" height="64" style={{ objectFit: 'contain' }} />
-              </div>
-              <h3>{t.benefit3Title}</h3>
-              <p>{t.benefit3Desc}</p>
-            </div>
-          </div>
-          <div style={{ display: 'flex', justifyContent: 'center', marginTop: '40px' }}>
-            <button 
-              className={`${styles.ctaButton} ${styles.ctaSolidPink} ${styles.ctaGiant}`}
-              onClick={() => handleWhatsAppClick('beneficios')}
-            >
-              {t.ctaBenefits}
-            </button>
-          </div>
-        </div>
-      </section>
-
-
-      {/* SEÇÃO PORTFOLIO */}
+      {/* SEÇÃO 2 - PORTFÓLIO + PROVA */}
       <section className={styles.portfolioSection}>
         <div className="container">
           <div className={styles.benefitsHeader}>
@@ -191,7 +145,6 @@ export default function Home() {
           </div>
           
           <div className={styles.portfolioGrid}>
-            
             <div className={styles.portfolioItem}>
               <div className={styles.browserMockup}>
                 <div className={styles.browserBar}>
@@ -239,20 +192,70 @@ export default function Home() {
                 </div>
               </div>
             </div>
+          </div>
 
+          {/* DEPOIMENTOS / PROVA SOCIAL LOGO APÓS O PORTFÓLIO */}
+          <div style={{ marginTop: '36px', background: '#F8FAFC', padding: '24px 32px', borderRadius: '16px', border: '1px solid #E2E8F0', textAlign: 'center' }}>
+            <div style={{ fontSize: '1.2rem', fontWeight: 800, color: '#0F172A', marginBottom: '4px' }}>
+              ⭐ ⭐ ⭐ ⭐ ⭐ {t.proofTitle}
+            </div>
+            <p style={{ color: '#64748B', fontSize: '0.95rem' }}>
+              {t.proofText}
+            </p>
           </div>
         </div>
       </section>
 
-      {/* SEÇÃO 2 - OFERTA */}
+      {/* SEÇÃO 3 - POR QUE VALE A PENA */}
+      <section className={styles.benefitsSection}>
+        <div className="container">
+          <div className={styles.benefitsHeader}>
+            <h2 className={styles.sectionTitle}>{t.benefitsTitle}</h2>
+            <p className={styles.sectionSubtitle}>{t.benefitsSubtitle}</p>
+          </div>
+          <div className={styles.benefitsGrid}>
+            <div className={`${styles.benefitCard} ${styles.googleCard}`}>
+              <div className={styles.benefitIcon}>
+                <Image src="/google.png" alt="Google" width={64} height={64} style={{ objectFit: 'contain' }} />
+              </div>
+              <h3>
+                Buscas do <span style={{color: '#4285F4'}}>G</span><span style={{color: '#EA4335'}}>o</span><span style={{color: '#FBBC05'}}>o</span><span style={{color: '#4285F4'}}>g</span><span style={{color: '#34A853'}}>l</span><span style={{color: '#EA4335'}}>e</span>
+              </h3>
+              <p>{t.benefit1Desc}</p>
+            </div>
+            <div className={styles.benefitCard}>
+              <div className={styles.benefitIcon} style={{ fontSize: '2.5rem', marginBottom: '12px' }}>
+                🛡️
+              </div>
+              <h3>{t.benefit2Title}</h3>
+              <p>{t.benefit2Desc}</p>
+            </div>
+            <div className={styles.benefitCard}>
+              <div className={styles.benefitIcon}>
+                <img src="/vendas.png?v=3" alt="Vendas" width="64" height="64" style={{ objectFit: 'contain' }} />
+              </div>
+              <h3>{t.benefit3Title}</h3>
+              <p>{t.benefit3Desc}</p>
+            </div>
+          </div>
+          <div style={{ display: 'flex', justifyContent: 'center', marginTop: '40px' }}>
+            <button 
+              className={`${styles.ctaButton} ${styles.ctaSolidPink} ${styles.ctaGiant}`}
+              onClick={() => handleWhatsAppClick('beneficios')}
+            >
+              {t.ctaBenefits}
+            </button>
+          </div>
+        </div>
+      </section>
+
+      {/* SEÇÃO 4 - A OFERTA */}
       <section className={styles.offerSection}>
         <div className={`container`}>
           <div className={styles.offerHeader}>
             <h2 className={styles.sectionTitle}>{t.offerTitle.split("\n")[0]}<br/>{t.offerTitle.split("\n")[1]}</h2>
             <p className={styles.sectionSubtitle}>{t.offerSubtitle}</p>
           </div>
-
-
 
           <div className={styles.pricingListCard}>
             <ul className={styles.pricingList}>
@@ -305,12 +308,11 @@ export default function Home() {
                 {t.ctaForm}
               </button>
             </div>
-
           </div>
         </div>
       </section>
 
-      {/* SEÇÃO 4 - COMO FUNCIONA */}
+      {/* SEÇÃO 5 - COMO FUNCIONA */}
       <section className={styles.processSection}>
         <div className="container">
           <h2 className={styles.sectionTitle}>{t.processTitle}</h2>
@@ -349,7 +351,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* SEÇÃO 5 - GARANTIA */}
+      {/* SEÇÃO 6 - GARANTIA + OBJEÇÕES (FAQ) */}
       <section className={styles.guaranteeSection}>
         <div className={`container ${styles.guaranteeContainer}`}>
           <div className={styles.guaranteeVisual}>
@@ -367,18 +369,50 @@ export default function Home() {
               <div className={styles.guaranteeCheck}>✓</div>
               <span>{t.guaranteeCheck}</span>
             </div>
+          </div>
+        </div>
+
+        {/* OBJEÇÕES & PERGUNTAS FREQUENTES INTEGRADAS */}
+        <div className="container" style={{ marginTop: '60px' }}>
+          <h2 className={styles.sectionTitle} style={{ color: 'white', textAlign: 'center', marginBottom: '30px' }}>{t.faqTitle}</h2>
+          <div className={styles.faqList}>
+            <details className={styles.faqItem}>
+              <summary className={styles.faqQuestion}>{t.faqQ1}</summary>
+              <div className={styles.faqAnswer}>{t.faqA1}</div>
+            </details>
+            <details className={styles.faqItem}>
+              <summary className={styles.faqQuestion}>{t.faqQ2}</summary>
+              <div className={styles.faqAnswer}>{t.faqA2}</div>
+            </details>
+            <details className={styles.faqItem}>
+              <summary className={styles.faqQuestion}>{t.faqQ3}</summary>
+              <div className={styles.faqAnswer}>{t.faqA3}</div>
+            </details>
+            <details className={styles.faqItem}>
+              <summary className={styles.faqQuestion}>{t.faqQ4}</summary>
+              <div className={styles.faqAnswer}>{t.faqA4}</div>
+            </details>
+            <details className={styles.faqItem}>
+              <summary className={styles.faqQuestion}>{t.faqQ5}</summary>
+              <div className={styles.faqAnswer}>{t.faqA5}</div>
+            </details>
+            <details className={styles.faqItem}>
+              <summary className={styles.faqQuestion}>{t.faqQ6}</summary>
+              <div className={styles.faqAnswer}>{t.faqA6}</div>
+            </details>
+          </div>
+          <div style={{ display: 'flex', justifyContent: 'center', marginTop: '40px' }}>
             <button 
               className={`${styles.ctaButton} ${styles.ctaSolidPink}`}
-              onClick={() => handleWhatsAppClick('garantia')}
-              style={{ marginTop: '20px' }}
+              onClick={() => handleWhatsAppClick('faq')}
             >
-              {t.ctaGuarantee}
+              {t.ctaFaq}
             </button>
           </div>
         </div>
       </section>
 
-      {/* SEÇÃO 6 - CTA FINAL */}
+      {/* SEÇÃO 7 - FECHAMENTO & RODAPÉ */}
       <section className={styles.finalCtaSection}>
         <div className="container">
           <h2 className={styles.finalTitle}>
@@ -435,46 +469,6 @@ export default function Home() {
                 {t.ctaForm}
               </button>
             </form>
-          </div>
-        </div>
-      </section>
-
-      {/* SEÇÃO 7 - FAQ */}
-      <section className={styles.faqSection}>
-        <div className="container">
-          <div className={styles.faqList}>
-            <details className={styles.faqItem}>
-              <summary className={styles.faqQuestion}>{t.faqQ1}</summary>
-              <div className={styles.faqAnswer}>{t.faqA1}</div>
-            </details>
-            <details className={styles.faqItem}>
-              <summary className={styles.faqQuestion}>{t.faqQ2}</summary>
-              <div className={styles.faqAnswer}>{t.faqA2}</div>
-            </details>
-            <details className={styles.faqItem}>
-              <summary className={styles.faqQuestion}>{t.faqQ3}</summary>
-              <div className={styles.faqAnswer}>{t.faqA3}</div>
-            </details>
-            <details className={styles.faqItem}>
-              <summary className={styles.faqQuestion}>{t.faqQ4}</summary>
-              <div className={styles.faqAnswer}>{t.faqA4}</div>
-            </details>
-            <details className={styles.faqItem}>
-              <summary className={styles.faqQuestion}>{t.faqQ5}</summary>
-              <div className={styles.faqAnswer}>{t.faqA5}</div>
-            </details>
-            <details className={styles.faqItem}>
-              <summary className={styles.faqQuestion}>{t.faqQ6}</summary>
-              <div className={styles.faqAnswer}>{t.faqA6}</div>
-            </details>
-          </div>
-          <div style={{ display: 'flex', justifyContent: 'center', marginTop: '40px' }}>
-            <button 
-              className={`${styles.ctaButton} ${styles.ctaSolidPink}`}
-              onClick={() => handleWhatsAppClick('faq')}
-            >
-              {t.ctaFaq}
-            </button>
           </div>
         </div>
       </section>
