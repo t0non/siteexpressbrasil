@@ -69,17 +69,30 @@ export async function POST(request: Request) {
       return NextResponse.json({ ok: false, error: "Failed to forward to Sheets" }, { status: 502 });
     }
 
-    // Mesmo que passe do if acima, algumas vezes o Apps Script retorna 200 com JSON { ok: true/false }
-    // Mas se for só HTTP 200, consideramos OK.
+    // Ler a resposta do Apps Script estritamente
     try {
       const responseData = await response.json();
-      // O App Script retorna um JSON no sucesso (deduplicação ou não)
-      // assumimos que se não estourar erro, ok é true.
-    } catch (err) {
-      // It might return plain text or empty response, which is fine as long as status was ok
-    }
+      
+      // Se o Apps Script retornou ok explicitamente (seja duplicate ou não)
+      if (responseData.ok === true) {
+        return NextResponse.json({ ok: true, duplicate: responseData.duplicate || false, lead_id });
+      }
+      
+      // Se retornou ok: false explícito
+      if (responseData.ok === false) {
+        console.error("Sheets API returned ok: false", responseData);
+        return NextResponse.json({ ok: false, error: responseData.error || "Sheets rejected the lead" }, { status: 400 });
+      }
 
-    return NextResponse.json({ ok: true, lead_id });
+      // Se não tem formato conhecido mas foi HTTP 200, assume ok mas avisa
+      return NextResponse.json({ ok: true, lead_id });
+      
+    } catch (err) {
+      // Falha ao fazer parse do JSON do Apps Script
+      console.error("Failed to parse Sheets API response", err);
+      // Não consideramos ok se não conseguimos confirmar a resposta estruturada.
+      return NextResponse.json({ ok: false, error: "Invalid response from Sheets API" }, { status: 502 });
+    }
   } catch (error) {
     console.error("Error in /api/leads:", error);
     return NextResponse.json({ ok: false, error: "Internal Server Error" }, { status: 500 });

@@ -21,12 +21,21 @@ export default function Home() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [buttonText, setButtonText] = useState(t.ctaModal);
 
+  const getOrCreateLeadId = () => {
+    if (typeof window === "undefined") return "SX-FALLBACK";
+    let leadId = sessionStorage.getItem('active_lead_id');
+    if (!leadId) {
+      const randomId = Math.random().toString(16).slice(2, 10).toUpperCase();
+      leadId = `SX-${randomId}`;
+      sessionStorage.setItem('active_lead_id', leadId);
+    }
+    return leadId;
+  };
+
   useEffect(() => {
     if (typeof window !== "undefined") {
-      if (!sessionStorage.getItem('lead_id')) {
-        const randomId = Math.random().toString(16).slice(2, 10).toUpperCase();
-        sessionStorage.setItem('lead_id', `SX-${randomId}`);
-      }
+      getOrCreateLeadId(); // Garante o ID ativo no inicio da sessao
+      
       if (!sessionStorage.getItem('session_timestamp')) {
         sessionStorage.setItem('session_timestamp', Date.now().toString());
       }
@@ -37,6 +46,9 @@ export default function Home() {
           sessionStorage.setItem(param, params.get(param) || '');
         }
       });
+      
+      // Processa a fila no load
+      processPendingLeads();
     }
 
     const today = new Date();
@@ -63,10 +75,10 @@ export default function Home() {
   }, []);
 
   const handleWhatsAppClick = (origin: string) => {
-    console.log(`Tracking event: click_whatsapp from ${origin}`);
-    
-    // GTM: Track form modal open
     if (typeof window !== "undefined") {
+      getOrCreateLeadId(); // Garante q tem ID ao abrir o modal
+      
+      // GTM: Track form modal open
       (window as any).dataLayer = (window as any).dataLayer || [];
       (window as any).dataLayer.push({
         event: 'siteexpress_form_start'
@@ -91,6 +103,62 @@ export default function Home() {
     return '';
   };
 
+  const processPendingLeads = async () => {
+    if (typeof window === "undefined") return;
+    if ((window as any).isProcessingLeads) return; // Lock
+
+    (window as any).isProcessingLeads = true;
+
+    try {
+      const queueStr = localStorage.getItem('siteexpress_pending_leads');
+      if (!queueStr) return;
+      
+      let queue = [];
+      try { queue = JSON.parse(queueStr); } catch (e) { queue = []; }
+      if (!Array.isArray(queue) || queue.length === 0) return;
+
+      const now = Date.now();
+      const SEVEN_DAYS = 7 * 24 * 60 * 60 * 1000;
+      let newQueue = [];
+
+      for (const item of queue) {
+        if (now - item.created_at > SEVEN_DAYS || item.retry_count >= 5) {
+          continue; // descarta muito velhos ou q falharam 5 vezes
+        }
+
+        try {
+          const res = await fetch('/api/leads', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(item.payload),
+            keepalive: true
+          });
+          
+          if (!res.ok) {
+            item.retry_count += 1;
+            newQueue.push(item);
+            continue;
+          }
+          
+          const json = await res.json();
+          if (json.ok) {
+            // Sucesso (ou duplicate), remove (não da push pro newQueue)
+          } else {
+            item.retry_count += 1;
+            newQueue.push(item);
+          }
+        } catch (err) {
+          item.retry_count += 1;
+          newQueue.push(item);
+        }
+      }
+
+      localStorage.setItem('siteexpress_pending_leads', JSON.stringify(newQueue));
+    } finally {
+      (window as any).isProcessingLeads = false;
+    }
+  };
+
   const handleSubmitForm = async (e: React.FormEvent) => {
     e.preventDefault();
     
@@ -99,11 +167,11 @@ export default function Home() {
     if (isSubmitting) return;
 
     setIsSubmitting(true);
-    setButtonText("ENVIANDO...");
+    setButtonText("Abrindo WhatsApp...");
 
     const currentSiteType = siteType || t.formSelect1;
     const finalPhone = cleanPhone.startsWith('55') ? cleanPhone : `55${cleanPhone}`;
-    const lead_id = sessionStorage.getItem('lead_id') || `SX-FALLBACK`;
+    const lead_id = getOrCreateLeadId(); // ID amarrado a este payload
     const fbclid = sessionStorage.getItem('fbclid') || '';
     const utm_source = sessionStorage.getItem('utm_source') || '';
     const session_timestamp = sessionStorage.getItem('session_timestamp') || Date.now().toString();
@@ -138,47 +206,51 @@ export default function Home() {
       fbp
     };
 
-    const text = encodeURIComponent(t.whatsappMessage(userName, userCompany, currentSiteType) + `\n\nRef: ${lead_id}`);
-    const wppUrl = `https://wa.me/553172247907?text=${text}`;
-
-    const sendToApi = async (retryCount = 0): Promise<boolean> => {
+    // 1. Salvar na fila local (com retry_count = 0)
+    if (typeof window !== "undefined") {
+      let queue = [];
       try {
-        const res = await fetch('/api/leads', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload)
-        });
-        const json = await res.json();
-        if (json.ok) return true;
-        throw new Error(json.error || 'API Error');
-      } catch (err) {
-        if (retryCount < 1) {
-          return await sendToApi(retryCount + 1);
-        }
-        console.error("Failed to send lead to Sheets after retry", err);
-        return false;
-      }
-    };
-
-    const success = await sendToApi();
-
-    if (success) {
-      if (typeof window !== "undefined") {
-        (window as any).dataLayer = (window as any).dataLayer || [];
-        (window as any).dataLayer.push({
-          event: 'siteexpress_lead',
-          project_type: currentSiteType
-        });
-      }
+        const q = localStorage.getItem('siteexpress_pending_leads');
+        if (q) queue = JSON.parse(q);
+      } catch(e) {}
+      
+      queue.push({
+        lead_id,
+        created_at: Date.now(),
+        retry_count: 0,
+        payload
+      });
+      localStorage.setItem('siteexpress_pending_leads', JSON.stringify(queue));
+      
+      // 2. Disparar GTM imediatamente (sem PII)
+      (window as any).dataLayer = (window as any).dataLayer || [];
+      (window as any).dataLayer.push({
+        event: 'siteexpress_lead',
+        project_type: currentSiteType
+      });
+      
+      // 3. Remover o lead_id atual para q o proximo modal gere um novo
+      sessionStorage.removeItem('active_lead_id');
     }
 
+    // 4. Abrir WhatsApp síncrono para evitar popup blocker
+    const text = encodeURIComponent(t.whatsappMessage(userName, userCompany, currentSiteType) + `\n\nRef: ${lead_id}`);
+    const wppUrl = `https://wa.me/553172247907?text=${text}`;
     window.open(wppUrl, '_blank');
+    
     setIsModalOpen(false);
     
+    // 5. Iniciar processamento da fila solto em background
+    processPendingLeads().catch(() => {});
+
+    // Limpar state do formulário
     setTimeout(() => {
+      setUserName("");
+      setUserWhatsapp("");
+      setUserCompany("");
       setIsSubmitting(false);
       setButtonText(t.ctaModal);
-    }, 2000);
+    }, 1000);
   };
 
   return (
