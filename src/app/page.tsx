@@ -189,16 +189,6 @@ export default function Home() {
               </div>
             </div>
           </div>
-
-          {/* DEPOIMENTOS / PROVA SOCIAL LOGO APÓS O PORTFÓLIO */}
-          <div style={{ marginTop: '36px', background: '#F8FAFC', padding: '24px 32px', borderRadius: '16px', border: '1px solid #E2E8F0', textAlign: 'center' }}>
-            <div style={{ fontSize: '1.2rem', fontWeight: 800, color: '#0F172A', marginBottom: '4px' }}>
-              ⭐ ⭐ ⭐ ⭐ ⭐ {t.proofTitle}
-            </div>
-            <p style={{ color: '#64748B', fontSize: '0.95rem' }}>
-              {t.proofText}
-            </p>
-          </div>
         </div>
       </section>
 
