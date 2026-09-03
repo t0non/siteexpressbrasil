@@ -9,7 +9,7 @@ const jakarta = Plus_Jakarta_Sans({ subsets: ['latin'], variable: '--font-jakart
 
 export const metadata: Metadata = {
   title: 'SiteExpress | Site Profissional Sem Complicação',
-  description: 'Criamos seu novo site profissional e colocamos tudo no ar em poucos dias. Você manda as informações, a SiteExpress resolve o resto.',
+  description: 'Enviamos a primeira versão do seu site profissional em até 24 horas. Você manda as informações, a SiteExpress resolve o resto.',
   openGraph: {
     title: 'SiteExpress | Site Profissional Sem Complicação',
     description: 'Sua empresa é profissional. Seu site também deveria ser.',
@@ -34,7 +34,7 @@ export default function RootLayout({
     name: 'SiteExpress',
     url: 'https://siteexpress.com.br',
     logo: 'https://siteexpress.com.br/logo_siteexpress.png',
-    description: 'Criamos seu novo site profissional e colocamos tudo no ar em poucos dias.',
+    description: 'Enviamos a primeira versão do seu site profissional em até 24 horas.',
     priceRange: '$$',
     address: {
       '@type': 'PostalAddress',
