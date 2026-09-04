@@ -28,24 +28,21 @@ export async function POST(request: Request) {
       return NextResponse.json({ ok: false, error: "Missing required fields" }, { status: 400 });
     }
 
+    // Obter data/hora SP fallback se não vier do front
+    const fallbackTimestamp = new Date().toLocaleString("pt-BR", {
+      timeZone: "America/Sao_Paulo",
+      day: "2-digit",
+      month: "2-digit",
+      year: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+    }).replace(',', '');
+
     const payload = {
+      ...data, // Espalha todos os campos, incluindo os novos (utm_term, campaign_id, created_at_br, etc)
       secret: process.env.SHEETS_INGEST_SECRET,
-      lead_id,
-      name,
-      whatsapp,
-      business,
-      project_type,
-      origin,
-      campaign,
-      adset,
-      ad,
-      utm_source,
-      utm_medium,
-      utm_campaign,
-      utm_content,
-      fbclid,
-      fbc,
-      fbp
+      timestamp: data.created_at_br || data.timestamp || fallbackTimestamp,
+      DataHora: data.created_at_br || data.timestamp || fallbackTimestamp // Extra field para garantir
     };
 
     const webhookUrl = process.env.SHEETS_WEBHOOK_URL;

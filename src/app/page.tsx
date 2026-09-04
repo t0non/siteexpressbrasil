@@ -39,13 +39,55 @@ export default function Home() {
       if (!sessionStorage.getItem('session_timestamp')) {
         sessionStorage.setItem('session_timestamp', Date.now().toString());
       }
+      
+      // NOVA LÓGICA DE TRACKING (Persistência no localStorage por 30 dias)
       const params = new URLSearchParams(window.location.search);
-      const trackParams = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'fbclid', 'campaign', 'adset', 'ad'];
+      const trackParams = [
+        'utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term',
+        'fbclid', 'campaign', 'campaign_id', 'adset', 'adset_id', 'ad', 'ad_id'
+      ];
+      
+      let currentParams: Record<string, string> = {};
+      let hasAnyTrackParam = false;
       trackParams.forEach(param => {
         if (params.has(param)) {
-          sessionStorage.setItem(param, params.get(param) || '');
+          const val = params.get(param) || '';
+          currentParams[param] = val;
+          if (val) hasAnyTrackParam = true;
         }
       });
+
+      // Identificar se é Meta Ads nesta visita específica
+      let isCurrentMetaAds = false;
+      const utmSource = (currentParams.utm_source || '').toLowerCase();
+      const utmMedium = (currentParams.utm_medium || '').toLowerCase();
+      
+      if (
+        currentParams.fbclid || 
+        ['meta', 'facebook', 'instagram', 'fb'].includes(utmSource) ||
+        utmMedium === 'paid_social'
+      ) {
+        isCurrentMetaAds = true;
+      } else if (currentParams.campaign || currentParams.adset || currentParams.ad) {
+        isCurrentMetaAds = true;
+      }
+
+      // Se for Meta Ads, salvar no localStorage
+      if (isCurrentMetaAds) {
+        const trackingData = {
+          ...currentParams,
+          origin: 'META ADS',
+          captured_at: Date.now()
+        };
+        localStorage.setItem('sx_tracking_data', JSON.stringify(trackingData));
+      }
+      
+      // Manter também a lógica legada do sessionStorage para não quebrar outras partes
+      if (hasAnyTrackParam) {
+        Object.entries(currentParams).forEach(([k, v]) => {
+          sessionStorage.setItem(k, v);
+        });
+      }
       
       // Processa a fila no load
       processPendingLeads();
@@ -172,12 +214,51 @@ export default function Home() {
     const currentSiteType = siteType || t.formSelect1;
     const finalPhone = cleanPhone.startsWith('55') ? cleanPhone : `55${cleanPhone}`;
     const lead_id = getOrCreateLeadId(); // ID amarrado a este payload
-    const fbclid = sessionStorage.getItem('fbclid') || '';
-    const utm_source = sessionStorage.getItem('utm_source') || '';
     const session_timestamp = sessionStorage.getItem('session_timestamp') || Date.now().toString();
 
+    // 1. Tentar recuperar tracking salvo no localStorage (com expiração de 30 dias)
+    let storedTracking: any = null;
+    try {
+      const stored = localStorage.getItem('sx_tracking_data');
+      if (stored) {
+        const parsed = JSON.parse(stored);
+        const THIRTY_DAYS = 30 * 24 * 60 * 60 * 1000;
+        if (Date.now() - parsed.captured_at < THIRTY_DAYS) {
+          storedTracking = parsed;
+        } else {
+          localStorage.removeItem('sx_tracking_data'); // expirou
+        }
+      }
+    } catch (e) {
+      console.error("Erro ao ler localStorage de tracking", e);
+    }
+
+    // 2. Definir função auxiliar de prioridade: URL atual > LocalStorage > Sessão
+    const params = new URLSearchParams(window.location.search);
+    const getParam = (key: string) => {
+      // Prioridade 1: URL atual (desde que não esteja vazia)
+      if (params.has(key) && params.get(key) !== "") return params.get(key) || "";
+      // Prioridade 2: LocalStorage salvo (último clique pago)
+      if (storedTracking && storedTracking[key]) return storedTracking[key];
+      // Prioridade 3: SessionStorage (fallback legado)
+      return sessionStorage.getItem(key) || '';
+    };
+
+    const fbclid = getParam('fbclid');
+    const utm_source = getParam('utm_source');
+    
+    // 3. Determinar a origem sem falsos positivos de ORGÂNICO
     let origin = "ORGÂNICO";
-    if (fbclid || /facebook|instagram|meta/i.test(utm_source)) {
+    const checkSource = utm_source.toLowerCase();
+    const checkMedium = getParam('utm_medium').toLowerCase();
+    
+    if (
+      fbclid || 
+      ['meta', 'facebook', 'instagram', 'fb'].includes(checkSource) ||
+      checkMedium === 'paid_social' ||
+      (storedTracking && storedTracking.origin === 'META ADS') ||
+      getParam('campaign') || getParam('adset') || getParam('ad')
+    ) {
       origin = "META ADS";
     }
 
@@ -187,6 +268,16 @@ export default function Home() {
     }
     const fbp = getCookie('_fbp');
 
+    // 4. Corrigir fuso horário para America/Sao_Paulo explicitamente no formato dd/MM/yyyy HH:mm
+    const nowSaoPaulo = new Date().toLocaleString("pt-BR", {
+      timeZone: "America/Sao_Paulo",
+      day: "2-digit",
+      month: "2-digit",
+      year: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+    }).replace(',', ''); // Output: 04/09/2026 12:52
+
     const payload = {
       lead_id,
       name: userName,
@@ -194,16 +285,22 @@ export default function Home() {
       business: userCompany,
       project_type: currentSiteType,
       origin,
-      campaign: sessionStorage.getItem('campaign') || '',
-      adset: sessionStorage.getItem('adset') || '',
-      ad: sessionStorage.getItem('ad') || '',
+      campaign: getParam('campaign') || getParam('utm_campaign'),
+      adset: getParam('adset'),
+      ad: getParam('ad') || getParam('utm_content'),
       utm_source,
-      utm_medium: sessionStorage.getItem('utm_medium') || '',
-      utm_campaign: sessionStorage.getItem('utm_campaign') || '',
-      utm_content: sessionStorage.getItem('utm_content') || '',
+      utm_medium: getParam('utm_medium'),
+      utm_campaign: getParam('utm_campaign'),
+      utm_content: getParam('utm_content'),
+      utm_term: getParam('utm_term'),
+      campaign_id: getParam('campaign_id'),
+      adset_id: getParam('adset_id'),
+      ad_id: getParam('ad_id'),
       fbclid,
       fbc,
-      fbp
+      fbp,
+      created_at_br: nowSaoPaulo, // Enviando horário de SP para a API
+      timestamp: nowSaoPaulo
     };
 
     // 1. Salvar na fila local (com retry_count = 0)
